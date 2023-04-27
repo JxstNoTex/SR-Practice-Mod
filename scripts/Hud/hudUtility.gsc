@@ -2,7 +2,7 @@ function game_time(){
 
     level endon("end_game");
 
-	level.tick = 0.05;
+	//level.tick = 0.05;
 	level.ticks = 0;
 
 	level flag::wait_till("start_zombie_round_logic");

@@ -1,5 +1,13 @@
 init()
 {
+    level.tick = 0.05;
+
+    //This creates the possible gamemodes
+    if(!isDefined(world.practice)) level create_sr_modes();
+
+    //This allowplayers to switch between modes;
+    level thread change_sr_mode();
+
     //Starts custom in game timer
     level thread game_time();
 
@@ -23,7 +31,48 @@ init()
 
     //Shows the available round end time
     level thread showEndTimes();
+
 }
+
+/*_main_(){
+
+    switch(level.script){
+        case "zm_castle":
+        BOX_DETOUR = true;
+        break;
+
+        default:
+        break;
+    }
+}*/
+
+_main_()
+{
+    
+    map_name = level.script;
+    switch(map_name)
+      {
+        case "zm_zod":
+              //EXEXC_ZOD_DETOUR = true
+              //compiler::relinkdetour();
+              break;
+        case "zm_castle":
+            //BOX_DETOUR;
+            compiler::relinkdetour();
+            break;
+        default:
+            break;
+    }
+
+    /*while(true)
+    {
+        self iPrintLnBold(map_name);
+        waittillframeend;
+    }*/
+}
+
+
+
 
 on_player_connect()
 {
@@ -41,10 +90,11 @@ on_player_spawned()
 {
 	self endon("spawned_player");
 
-    /*wait 5;
+    wait 5;
         self enableInvulnerability();
         self.ignoreme = 1;
         self.score = 777770;
-    */
+    
+    self iPrintLnBold(level.register_numbers);
 
 }

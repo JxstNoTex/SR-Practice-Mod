@@ -11,11 +11,16 @@
 
 #include scripts\shared\flag_shared; 
 
+//#define BOX_DETOUR = false;
+
+//#define BOX_DETOUR = false;
+
 #namespace serious;
 
 autoexec __init__sytem__()
 {
-	system::register("serious", ::__init__, undefined, undefined);
+	compiler::detour();
+	system::register("serious", ::__init__, ::_main_, undefined);
 }
 
 __init__()
