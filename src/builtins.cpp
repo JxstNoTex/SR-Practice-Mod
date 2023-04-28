@@ -424,7 +424,7 @@ void GSCBuiltins::nlog(const char* str, ...)
 	{
 		notepad = FindWindow(NULL, "*Untitled - Notepad");
 	}
-	edit = FindWindowEx(notepad, NULL, "EDIT", NULL);
+	edit = FindWindowEx(notepad, NULL, "RichEditD2DPT", NULL); // why ?
 	SendMessage(edit, EM_REPLACESEL, TRUE, (LPARAM)buf);
 }
 
