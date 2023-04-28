@@ -6,7 +6,7 @@ static int isModApproved(char* ff)
     sha1.update(ff);
     const string checksum = sha1.final();
     //if we match the checksum of the mod.ff, then we are good to go
-    if(checksum == SHA1)
+    if( checksum == CHECKSUM )
         return 1;
     else
         return 0;
