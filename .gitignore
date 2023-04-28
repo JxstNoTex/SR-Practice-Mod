@@ -11,8 +11,8 @@
 ###################
 
 *.gscc
-*.somap
-*.gsi
+*.omap
+*.gsic
 
 # Packages #
 ############
