@@ -4,4 +4,4 @@
 #include <string>
 #include <iostream>
 
-#define SHA1 "sha1 of the mod.ff"
+#define CHECKSUM "sha1 of the mod.ff"
