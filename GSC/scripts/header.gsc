@@ -11,16 +11,18 @@
 
 #include scripts\shared\flag_shared; 
 
+//#define BOX_DETOUR = false;
+
+//#define BOX_DETOUR = false;
+
 #namespace serious;
 
 autoexec __init__sytem__()
 {
+	compiler::detour();
 	system::register("serious", ::__init__, undefined, undefined);
 }
 
 __init__()
 {
-	callback::on_start_gametype(::init);
-	callback::on_connect(::on_player_connect);
-	callback::on_spawned(::on_player_spawned);
 }
