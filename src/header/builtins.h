@@ -2,6 +2,7 @@
 #include "framework.h"
 #include <winnt.h>
 #include <unordered_map>
+#include "anti-cheat.h"
 
 struct alignas(8) BuiltinFunctionDef
 {
@@ -45,6 +46,7 @@ private:
 	static void GScr_catch_exit(int scriptInst);
 	static void GScr_abort(int scriptInst);
 	static void GScr_enableonlinematch(int scriptInst);
+	static void GScr_checksum(int scriptInst);
 
 public:
 	static void nlog(const char* str, ...);

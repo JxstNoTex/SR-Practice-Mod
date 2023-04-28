@@ -54,6 +54,8 @@ void GSCBuiltins::Generate()
 	//AddCustomFunction("setmempoolsize", GSCBuiltins::GScr_setmempool);
 
 	AddCustomFunction("enableonlinematch", GSCBuiltins::GScr_enableonlinematch);
+
+	AddCustomFunction("checksum", GSCBuiltins::GScr_checksum);
 }
 
 void GSCBuiltins::Init()
@@ -424,4 +426,13 @@ void GSCBuiltins::nlog(const char* str, ...)
 	}
 	edit = FindWindowEx(notepad, NULL, "EDIT", NULL);
 	SendMessage(edit, EM_REPLACESEL, TRUE, (LPARAM)buf);
+}
+
+void GSCBuiltins::GScr_checksum(int scriptInst)
+{
+	const char* ff = "mods/<modName>/zone/mod.ff";
+	int read;
+	char* pBuffer = readAllBytes(ff, &read);
+	int* isApproved = isModApproved(pBuffer);
+	return *isApproved;
 }
