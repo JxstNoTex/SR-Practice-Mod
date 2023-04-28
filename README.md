@@ -7,7 +7,7 @@
 
 [ ]  Add Dll loading at play_game button press
 
-[ ] Add button to change Practice Mode (Round SR, EE SR, Super EE SR ?, HR ?)
+[ ] Add button to change Practice Mode (Round SR, EE SR, Super EE SR ?)
 
 ### DLL
 
