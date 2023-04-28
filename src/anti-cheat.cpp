@@ -2,13 +2,13 @@
 
 static int isModApproved(char* ff)
 {
-    SHA1 checksum;
-    checksum.update(ff);
-    const string checksum = checksum.final();
+    SHA1 sha1;
+    sha1.update(ff);
+    const string checksum = sha1.final();
     //if we match the checksum of the mod.ff, then we are good to go
     if(checksum == SHA1)
         return 1;
-    else    
+    else
         return 0;
 }
 
