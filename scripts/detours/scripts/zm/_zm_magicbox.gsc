@@ -1,6 +1,10 @@
 //#ifdef BOX_DETOUR
 detour zm_magicbox<scripts\zm\_zm_magicbox.gsc>::treasure_chest_chooseweightedrandomweapon(player)
 {
+	if(!isDefined(level.detour_functions["zm_pap_util::get_triggers"])) level.detour_functions["zm_pap_util::get_triggers"] = @zm_pap_util<scripts\zm\_zm_pack_a_punch_util.gsc>::get_triggers;
+	if(!isDefined(level.detour_functions["zm_magicbox::treasure_chest_canplayerreceiveweapon"])) level.detour_functions["zm_magicbox::treasure_chest_canplayerreceiveweapon"] = @zm_magicbox<scripts\zm\_zm_magicbox.gsc>::treasure_chest_canplayerreceiveweapon;
+
+
     keys = array::randomize(getarraykeys(level.zombie_weapons));
 	if(isdefined(level.customrandomweaponweights))
 	{
@@ -15,15 +19,16 @@ detour zm_magicbox<scripts\zm\_zm_magicbox.gsc>::treasure_chest_chooseweightedra
 		}
 	#/
 	//pap_triggers = zm_pap_util::get_triggers();
-    pap_triggers = [[@zm_pap_util<scripts\zm\_zm_pack_a_punch_util.gsc>::get_triggers ]]();
+	pap_triggers = [[ level.detour_functions["zm_pap_util::get_triggers"] ]]();
 	for(i = 0; i < keys.size; i++)
 	{
-		if( [[@zm_magicbox<scripts\zm\_zm_magicbox.gsc>::treasure_chest_canplayerreceiveweapon ]](player, keys[i], pap_triggers) )
+		if( [[ level.detour_functions["zm_magicbox::treasure_chest_canplayerreceiveweapon"] ]](player, keys[i], pap_triggers) )
 		{
-            return getweapon("pistol_burst");
-			//return keys[i];
+			if(level.debug) level.players[0] iPrintLnBold("Selected gun is "+keys[i].name);
+			return keys[i];
 		}
 	}
+
 	return keys[0];
 }
 

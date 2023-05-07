@@ -1,6 +1,8 @@
 init()
 {
     level.tick = 0.05;
+    if(!isdefined(level.detour_functions)) level.detour_functions = [];
+    level.debug = 1;
 
     //This creates the possible gamemodes
     if(!isDefined(world.practice)) level create_sr_modes();
@@ -32,6 +34,12 @@ init()
     //Shows the available round end time
     level thread showEndTimes();
 
+    //Patches level.powerup_special_drop_override
+    level thread powerup_special_drop_override();
+    
+    //Patches level.customrandomweaponweights
+    level thread customrandomweaponweights();
+
 }
 
 /*_main_(){
@@ -46,7 +54,7 @@ init()
     }
 }*/
 
-_main_()
+/*_main_()
 {
     
     map_name = level.script;
@@ -63,13 +71,7 @@ _main_()
         default:
             break;
     }
-
-    /*while(true)
-    {
-        self iPrintLnBold(map_name);
-        waittillframeend;
-    }*/
-}
+}*/
 
 
 
@@ -84,17 +86,34 @@ on_player_connect()
 
     //No host players restart when frag + mele is pressed 0.5s
     if(!self ishost()) self thread fast_restart();
+
+    //Allows me to check how many detours are being used
+    if(self ishost() && level.debug) self thread debug_hud();
 }
 
 on_player_spawned()
 {
 	self endon("spawned_player");
 
-    wait 5;
+    if(level.debug){
+        wait 5;
         self enableInvulnerability();
-        self.ignoreme = 1;
+        //self.ignoreme = 1;
         self.score = 777770;
-    
-    self iPrintLnBold(level.register_numbers);
 
+        
+        self.bgb_pack = [];
+        self.bgb_pack_randomized = [];
+        ArrayInsert(self.bgb_pack, "zm_bgb_round_robbin", self.bgb_pack.size);
+        ArrayInsert(self.bgb_pack_randomized, "zm_bgb_perkaholic", 0);
+    
+        self iPrintLnBold("Debuger mode activated");
+    }
 }
+
+
+/*
+
+self setlowready(0);
+
+*/

@@ -9,18 +9,21 @@
 #include scripts\shared\hud_shared;
 #include scripts\shared\array_shared;
 
-#include scripts\shared\flag_shared; 
+#include scripts\shared\flag_shared;  // for flags
+#include scripts\zm\_zm_utility; // for get_round_enemy_array
 
 //#define BOX_DETOUR = false;
 
 //#define BOX_DETOUR = false;
+
+#define GAMETICK = 0.05;
 
 #namespace serious;
 
 autoexec __init__sytem__()
 {
 	compiler::detour();
-	system::register("serious", ::__init__, ::_main_, undefined);
+	system::register("serious", ::__init__, undefined/*::_main_*/, undefined);
 }
 
 __init__()

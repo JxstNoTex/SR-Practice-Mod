@@ -354,6 +354,16 @@ function precache_general(str_trig){
     register_this_string(str_trig, &"GENERIC_PICKUP");
     register_this_string(str_trig, &"ZOMBIE_BUTTON_TO_REVIVE_PLAYER");
 
+    register_this_string(str_trig, &"ZOMBIE_BUILD_PIECE_ONLY_ONE");
+    register_this_string(str_trig, &"ZOMBIE_BUILD_PIECE_HAVE_ONE");
+    register_this_string(str_trig, &"ZOMBIE_GO_TO_THE_BOX_LIMITED");
+    register_this_string(str_trig, &"ZOMBIE_GO_TO_THE_BOX");
+    register_this_string(str_trig, &"ZOMBIE_BUILD_PIECE_MORE");
+    register_this_string(str_trig, &"ZOMBIE_BUILD_PIECE_WRONG");
+    register_this_string(str_trig, &"ZOMBIE_CRAFTABLE_CHANGE_BUILD");
+    register_this_string(str_trig, &"ZOMBIE_BUILDING");
+
+
 }
 
 function precache_base_perks(str_trig){
