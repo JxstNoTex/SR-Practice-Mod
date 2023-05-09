@@ -1,0 +1,133 @@
+  General
+
+  level.fn_custom_round_ai_spawn
+
+  Zod
+
+Box Location is left
+Perks
+Special Rounds
+EE
+Song
+Pap
+BossRush
+
+  Factory
+
+Box Yes
+Perks
+Special Rounds
+EE
+Song
+Pap
+BossRush
+
+  Castle
+
+Box
+Perks
+Special Rounds
+EE
+Song
+Pap
+BossRush
+
+  Island
+
+Box
+Perks
+Special Rounds
+EE
+Song
+Pap
+BossRush
+
+  Stalingrad
+
+Box
+Perks
+Special Rounds
+EE
+Song
+Pap
+BossRush
+
+  Genesis
+
+Box
+Perks
+Special Rounds
+EE
+Song
+Pap
+BossRush
+
+  Prototype
+
+Box
+Perks
+Special Rounds
+EE
+Song
+Pap
+BossRush
+
+  Asylum
+
+Box
+Perks
+Special Rounds
+EE
+Song
+Pap
+BossRush
+
+  Sumpf
+
+Box
+Perks
+Special Rounds
+EE
+Song
+Pap
+BossRush
+
+  Theatre
+
+Box
+Perks
+Special Rounds
+EE
+Song
+Pap
+BossRush
+
+  Cosmodrome
+
+Box
+Perks
+Special Rounds
+EE
+Song
+Pap
+BossRush
+
+  Temple
+
+Box
+Perks
+Special Rounds
+EE
+Song
+Pap
+BossRush
+
+  Tomb
+
+Box
+Perks
+Special Rounds
+EE
+Song
+Pap
+BossRush

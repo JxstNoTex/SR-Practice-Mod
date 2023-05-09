@@ -11,7 +11,7 @@ detour system<scripts\shared\system_shared.gsc>::register(str_system, func_prein
         #endregion
 
         #region zm_factory
-
+            //case "zm_factory":
         #endregion
 
         #region zm_castle
@@ -19,6 +19,7 @@ detour system<scripts\shared\system_shared.gsc>::register(str_system, func_prein
             case "zm_castle_achievements":
             case "zm_castle_teleporter":
         #endregion
+        
             compiler::relinkdetours();
             if(level.debug){
                 level thread add_detoured_string(str_system);

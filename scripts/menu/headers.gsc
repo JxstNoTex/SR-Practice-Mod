@@ -12,10 +12,6 @@
 #include scripts\shared\flag_shared;  // for flags
 #include scripts\zm\_zm_utility; // for get_round_enemy_array
 
-//#define BOX_DETOUR = false;
-
-//#define BOX_DETOUR = false;
-
 #define GAMETICK = 0.05;
 
 #namespace serious;

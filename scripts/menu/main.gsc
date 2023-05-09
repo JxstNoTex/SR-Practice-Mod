@@ -40,6 +40,9 @@ init()
     //Patches level.customrandomweaponweights
     level thread customrandomweaponweights();
 
+    while(!isDefined(level.randomize_perk_machine_location)) wait GAMETICK;
+    level.randomize_perk_machine_location = 0;
+
 }
 
 /*_main_(){
@@ -101,12 +104,14 @@ on_player_spawned()
         //self.ignoreme = 1;
         self.score = 777770;
 
-        
+
         self.bgb_pack = [];
         self.bgb_pack_randomized = [];
-        ArrayInsert(self.bgb_pack, "zm_bgb_round_robbin", self.bgb_pack.size);
-        ArrayInsert(self.bgb_pack_randomized, "zm_bgb_perkaholic", 0);
-    
+        //ArrayInsert(self.bgb_pack, "zm_bgb_round_robbin", self.bgb_pack.size);
+        //ArrayInsert(self.bgb_pack_randomized, "zm_bgb_perkaholic", 0);
+        ArrayInsert(self.bgb_pack, "zm_bgb_reign_drops", 0);
+        ArrayInsert(self.bgb_pack_randomized, "zm_bgb_reign_drops", 0);
+
         self iPrintLnBold("Debuger mode activated");
     }
 }
