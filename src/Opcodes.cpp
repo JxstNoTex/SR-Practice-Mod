@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "Opcodes.h"
 #include "offsets.h"
 #include "detours.h"

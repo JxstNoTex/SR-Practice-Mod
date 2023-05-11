@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "framework.h"
 #include "detours.h"
 #include "offsets.h"
@@ -84,7 +86,7 @@ void ScriptDetours::RegisterRuntimeDetour(INT64 hFixup, INT32 replaceFunc, INT32
 	}
 }
 
-EXPORT void RemoveDetours()
+void RemoveDetours()
 {
 #ifdef DETOUR_LOGGING
 	ALOG("Removing detours...");
@@ -98,7 +100,7 @@ EXPORT void RemoveDetours()
 	ScriptDetours::DetoursLinked = false;
 }
 
-EXPORT bool RegisterDetours(void* DetourData, int NumDetours, INT64 scriptOffset)
+bool RegisterDetours(void* DetourData, int NumDetours, INT64 scriptOffset)
 {
 	RemoveDetours();
 	ScriptDetours::GSC_OBJ = (char*)scriptOffset;

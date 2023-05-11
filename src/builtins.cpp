@@ -1,6 +1,12 @@
+#include "pch.h"
+
 #include "builtins.h"
 #include "offsets.h"
 #include "detours.h"
+
+#include <Windows.h>
+
+#pragma warning( disable : 4996 )
 
 std::unordered_map<int, void*> GSCBuiltins::CustomFunctions;
 tScrVm_GetString GSCBuiltins::ScrVm_GetString;
@@ -16,6 +22,8 @@ void GSCBuiltins::Generate()
 	// compiler::detour()
 	// Link and execute detours included in loaded scripts.
 	AddCustomFunction("detour", GSCBuiltins::GScr_detour);
+
+	
 	
 	// compiler::relinkdetours()
 	// Re-link any detours that did not get linked previously due to script load order, etc.
@@ -54,8 +62,6 @@ void GSCBuiltins::Generate()
 	//AddCustomFunction("setmempoolsize", GSCBuiltins::GScr_setmempool);
 
 	AddCustomFunction("enableonlinematch", GSCBuiltins::GScr_enableonlinematch);
-
-	AddCustomFunction("checksum", GSCBuiltins::GScr_checksum);
 }
 
 void GSCBuiltins::Init()
@@ -305,11 +311,11 @@ void GSCBuiltins::GScr_setmempool(int scriptInst)
 
 	void* oldPool = newVarMemPool;
 	newVarMemPool = (char*)_aligned_malloc(numBytes, 128);
-	if (newVarMemPool <= 0)
-	{
-		nlog("Failed to allocate memory! Pointer was null");
-		return;
-	}
+	//if (newVarMemPool <= 0)
+	//{
+	//	nlog("Failed to allocate memory! Pointer was null");
+	//	return;
+	//}
 
 	memset(newVarMemPool, 0, numBytes);
 	memcpy(newVarMemPool, (void*)*llpScrVarMemPool, MEM_SCRVAR_SPACE(scriptInst));
@@ -424,15 +430,6 @@ void GSCBuiltins::nlog(const char* str, ...)
 	{
 		notepad = FindWindow(NULL, "*Untitled - Notepad");
 	}
-	edit = FindWindowEx(notepad, NULL, "RichEditD2DPT", NULL); // why ?
+	edit = FindWindowEx(notepad, NULL, "RichEditD2DPT", NULL);
 	SendMessage(edit, EM_REPLACESEL, TRUE, (LPARAM)buf);
-}
-
-void GSCBuiltins::GScr_checksum(int scriptInst)
-{
-	const char* ff = "mods/<modName>/zone/mod.ff";
-	int read;
-	char* pBuffer = readAllBytes(ff, &read);
-	int* isApproved = isModApproved(pBuffer);
-	return *isApproved;
 }
