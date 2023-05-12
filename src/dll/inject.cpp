@@ -2,16 +2,8 @@
 #include "offsets.h"
 #include "resource.h"
 #include "builtins.h"
-#include <string>
-#include <filesystem>
-#include <fstream>
-#include <stdio.h>
-#include <vector>
-#include <unordered_set>
-#include <thread>
 #include "resource.h"
 #include "pch.h"
-#include "Utils.h"
 
 
 #define OFF_ScrVarGlob REBASE(0x51A3500)
@@ -44,6 +36,20 @@ bool injector::injectT7()
     void* pointer = (void*)LockResource(HGlobal_GSCC);
     INT64 HSize_GSCC = SizeofResource(GCM(), Hres_GSCC);
 
+    GSCBuiltins::nlog("DLL Handle init loaded");
+    HRSRC Hres_GSI = FindResource(hm, MAKEINTRESOURCE(GSI), (LPCSTR)"BIN");
+    HGLOBAL HGlobal_GSI = LoadResource(hm, Hres_GSI);
+    void* pointer1 = (void*)LockResource(HGlobal_GSI);
+    INT64 HSize_GSI = SizeofResource(hm, Hres_GSI);
+
+    if (HSize_GSI <= 1)
+    {
+        GSCBuiltins::nlog("GSI wasnt allocated from resource");
+    }
+    if (HSize_GSCC <= 1)
+    {
+        GSCBuiltins::nlog("GSCC wasnt allocated from resource");
+    }
 
     if (GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, (LPCSTR)&GSCBuiltins::AddCustomFunction, &hm) == 0)
     {
@@ -53,9 +59,7 @@ bool injector::injectT7()
     }
     else
     {
-        pID = injector::GetProcessIdByName("BlackOps3.exe");
-        if (pID != 0)
-        {
+            pID = injector::GetProcessIdByName("BlackOps3.exe");
             //GSCBuiltins::nlog("%d", pID);
 
             pHandle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pID);
@@ -101,64 +105,28 @@ bool injector::injectT7()
                     std::cout << "llpOriginalBuffer: " << llpOriginalBuffer << std::endl;
                     std::cout << "OriginalSourceChecksum: " << OriginalSourceChecksum << std::endl;
 
-                    std::cout << "size of lpbuffer: " << t7spt.Buffersize << std::endl;
-
-                    std::cout << "buffer size" << HSize_GSCC << std::endl;
-
-
-
-
                     t7spt.lpBuffer = (long long)malloc(HSize_GSCC);
                     WriteProcessMemory(pHandle, (LPVOID)(t7spt.lpBuffer), (LPVOID)pointer, HSize_GSCC, 0);
-                    
 
-                    std::cout << "---------------------------------------------------" << std::endl;
-                    std::cout << "buffersize: " << t7spt.Buffersize << std::endl;
-                    std::cout << "Pad: " << t7spt.Pad << std::endl;
-                    std::cout << "llpName: " << t7spt.llpName << std::endl;
-                    std::cout << "lpbuffer" << t7spt.lpBuffer << std::endl;
-                    std::cout << "loaded Script number: " << i << std::endl;
-                    std::cout << "String Name: " << strBuff << std::endl;
-                    std::cout << "---------------------------------------------------" << std::endl;
 
                     WriteProcessMemory(pHandle, (LPVOID)(llpModifiedSPTStruct), (LPVOID)&t7spt, sizeof(t7spt), 0);
 
 
-
-                    std::cout << "lpbuffer: " << t7spt.lpBuffer << std::endl;
-
-                    GSCBuiltins::nlog("DLL Handle init loaded");
-                    HRSRC Hres_GSI = FindResource(hm, MAKEINTRESOURCE(GSI), (LPCSTR)"BIN");
-                    HGLOBAL HGlobal_GSI = LoadResource(hm, Hres_GSI);
-                    void* pointer1 = (void*)LockResource(HGlobal_GSI);
-                    INT64 HSize_GSI = SizeofResource(hm, Hres_GSI);
-
-                    if (HSize_GSI <= 1)
-                    {
-                        GSCBuiltins::nlog("GSI wasnt allocated from resource");
-                    }
-                    if (HSize_GSCC <= 1)
-                    {
-                        GSCBuiltins::nlog("GSCC wasnt allocated from resource");
-                    }
                     long long buf = t7spt.lpBuffer;
                     GSCBuiltins::nlog("buffer to register = %x", buf);
                     RegisterDetours(pointer1, 1, t7spt.lpBuffer);
 
                     //free the resource
-                    BOOL bResult = UnlockResource(Hres_GSI);
-                    bResult = FreeResource(Hres_GSI);
+                    BOOL gsiResult = UnlockResource(Hres_GSI);
+                    gsiResult = FreeResource(Hres_GSI);
+
+                    BOOL gccResult1 = UnlockResource(Hres_GSCC);
+                    gccResult1 = FreeResource(Hres_GSCC);
 
                     continue;
                 }
             }
             
-
-
-
-
-        }
-
         return injectResponse;
     }
 }
