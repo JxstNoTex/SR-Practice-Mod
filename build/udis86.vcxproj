@@ -99,6 +99,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\deps\extra\udis86\libudis86\itab.c" />
+    <ClCompile Include="..\deps\udis86\libudis86\decode.c" />
+    <ClCompile Include="..\deps\udis86\libudis86\syn-att.c" />
+    <ClCompile Include="..\deps\udis86\libudis86\syn-intel.c" />
+    <ClCompile Include="..\deps\udis86\libudis86\syn.c" />
+    <ClCompile Include="..\deps\udis86\libudis86\udis86.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -119,6 +119,7 @@
     <ClInclude Include="..\src\common\utils\info_string.hpp" />
     <ClInclude Include="..\src\common\utils\io.hpp" />
     <ClInclude Include="..\src\common\utils\memory.hpp" />
+    <ClInclude Include="..\src\common\utils\minlog.hpp" />
     <ClInclude Include="..\src\common\utils\named_mutex.hpp" />
     <ClInclude Include="..\src\common\utils\nt.hpp" />
     <ClInclude Include="..\src\common\utils\progress_ui.hpp" />
@@ -154,31 +155,31 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="asmjit.vcxproj">
-      <Project>{ED0182F2-D9A3-ACC8-C25E-C01CAE9F3319}</Project>
+      <Project>{ed0182f2-d9a3-acc8-c25e-c01cae9f3319}</Project>
     </ProjectReference>
     <ProjectReference Include="curl.vcxproj">
-      <Project>{DB59957C-C790-960D-707D-7C105C93120F}</Project>
+      <Project>{db59957c-c790-960d-707d-7c105c93120f}</Project>
     </ProjectReference>
     <ProjectReference Include="discord-rpc.vcxproj">
       <Project>{DFD4EACE-4B8A-63C4-D47E-5D9B40335AC8}</Project>
     </ProjectReference>
     <ProjectReference Include="libtomcrypt.vcxproj">
-      <Project>{1E3156E2-8AE6-CED7-13DB-C8AE7F8FC5DB}</Project>
+      <Project>{1e3156e2-8ae6-ced7-13db-c8ae7f8fc5db}</Project>
     </ProjectReference>
     <ProjectReference Include="libtommath.vcxproj">
-      <Project>{36F6A20E-22AE-E45B-8BB5-BDB7778C7F4C}</Project>
+      <Project>{36f6a20e-22ae-e45b-8bb5-bdb7778c7f4c}</Project>
     </ProjectReference>
     <ProjectReference Include="minhook.vcxproj">
-      <Project>{5A9B3AC7-C67A-B962-CF92-44393BF11FC4}</Project>
+      <Project>{5a9b3ac7-c67a-b962-cf92-44393bf11fc4}</Project>
     </ProjectReference>
     <ProjectReference Include="minizip.vcxproj">
-      <Project>{C5553BC7-3135-BA62-3A4D-4539A6AB20C4}</Project>
+      <Project>{c5553bc7-3135-ba62-3a4d-4539a6ab20c4}</Project>
     </ProjectReference>
     <ProjectReference Include="udis86.vcxproj">
-      <Project>{28AD1720-144F-42F6-FD09-564AE94AC946}</Project>
+      <Project>{28ad1720-144f-42f6-fd09-564ae94ac946}</Project>
     </ProjectReference>
     <ProjectReference Include="zlib.vcxproj">
-      <Project>{16CFA17C-0206-A30D-ABF2-881097081F0F}</Project>
+      <Project>{16cfa17c-0206-a30d-abf2-881097081f0f}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

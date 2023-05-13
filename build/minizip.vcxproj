@@ -97,6 +97,21 @@
       <AdditionalOptions>/IGNORE:4702 /LTCG %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\deps\zlib\contrib\minizip\crypt.h" />
+    <ClInclude Include="..\deps\zlib\contrib\minizip\ioapi.h" />
+    <ClInclude Include="..\deps\zlib\contrib\minizip\iowin32.h" />
+    <ClInclude Include="..\deps\zlib\contrib\minizip\mztools.h" />
+    <ClInclude Include="..\deps\zlib\contrib\minizip\unzip.h" />
+    <ClInclude Include="..\deps\zlib\contrib\minizip\zip.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\deps\zlib\contrib\minizip\ioapi.c" />
+    <ClCompile Include="..\deps\zlib\contrib\minizip\iowin32.c" />
+    <ClCompile Include="..\deps\zlib\contrib\minizip\mztools.c" />
+    <ClCompile Include="..\deps\zlib\contrib\minizip\unzip.c" />
+    <ClCompile Include="..\deps\zlib\contrib\minizip\zip.c" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

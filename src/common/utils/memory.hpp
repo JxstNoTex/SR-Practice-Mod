@@ -2,7 +2,6 @@
 
 #include <mutex>
 #include <vector>
-#include <TlHelp32.h>
 
 namespace utils
 {

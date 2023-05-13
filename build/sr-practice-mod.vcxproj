@@ -43,7 +43,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -116,8 +116,9 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\deps\Lua\include;..\src\dll;src;..\src\common;..\deps\asmjit\src;..\deps\curl\include;..\deps\discord-rpc\include;..\deps\libtomcrypt\src\headers;..\deps\libtommath;..\deps\minhook\include;..\deps\zlib\contrib\minizip;..\deps\rapidjson\include;..\deps\stb;..\deps\udis86;..\deps\udis86\libudis86;..\deps\extra\udis86;..\deps\extra\udis86\libudis86;..\deps\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\deps\Lua\include;..\src\dll;src;..\src\common;..\deps\asmjit\src;..\deps\curl\include;..\deps\discord-rpc\include;..\deps\libtomcrypt\src\headers;..\deps\libtommath;..\deps\minhook\include;..\deps\zlib\contrib\minizip;..\deps\rapidjson\include;..\deps\stb;..\deps\udis86;..\deps\udis86\libudis86;..\deps\extra\udis86;..\deps\extra\udis86\libudis86;..\deps\zlib;..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -129,6 +130,9 @@
     <PostBuildEvent>
       <Command>copy "$(SolutionDir)bin\$(Platform)\$(Configuration)\sr-practice-mod.dll" "Y:\SteamLibrary\steamapps\common\Call of Duty Black Ops III\mods\sr_practice\zone"</Command>
     </PostBuildEvent>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\GSIC;$(SolutionDir)..\resources</AdditionalIncludeDirectories>
+    </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -152,29 +156,68 @@
   <ItemGroup>
     <None Include="..\GSIC\compiled.gscc" />
     <None Include="..\GSIC\gsi.packdetour" />
+    <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\dll\builtins.cpp" />
+    <ClCompile Include="..\src\dll\component_loader.cpp" />
+    <ClCompile Include="..\src\dll\console.cpp" />
     <ClCompile Include="..\src\dll\detours.cpp" />
     <ClCompile Include="..\src\dll\dllmain.cpp" />
+    <ClCompile Include="..\src\dll\game.cpp" />
     <ClCompile Include="..\src\dll\inject.cpp" />
-    <ClCompile Include="..\src\dll\Memhelp.cpp" />
     <ClCompile Include="..\src\dll\Opcodes.cpp" />
     <ClCompile Include="..\src\dll\pch.cpp" />
+    <ClCompile Include="..\src\dll\scheduler.cpp" />
+    <ClCompile Include="..\src\dll\std_include.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\dll\builtins.h" />
+    <ClInclude Include="..\src\dll\component_interface.hpp" />
+    <ClInclude Include="..\src\dll\component_loader.hpp" />
     <ClInclude Include="..\src\dll\detours.h" />
     <ClInclude Include="..\src\dll\framework.h" />
+    <ClInclude Include="..\src\dll\game.hpp" />
     <ClInclude Include="..\src\dll\inject.h" />
-    <ClInclude Include="..\src\dll\Memhelp.h" />
     <ClInclude Include="..\src\dll\offsets.h" />
     <ClInclude Include="..\src\dll\Opcodes.h" />
     <ClInclude Include="..\src\dll\pch.h" />
     <ClInclude Include="..\src\dll\resource.h" />
+    <ClInclude Include="..\src\dll\scheduler.hpp" />
+    <ClInclude Include="..\src\dll\std_include.hpp" />
+    <ClInclude Include="..\src\dll\symbols.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\src\dll\sr-practice-mod.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="asmjit.vcxproj">
+      <Project>{ed0182f2-d9a3-acc8-c25e-c01cae9f3319}</Project>
+    </ProjectReference>
+    <ProjectReference Include="common.vcxproj">
+      <Project>{aefee3f6-9aa0-0ecd-835b-22216f9c951d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="curl.vcxproj">
+      <Project>{db59957c-c790-960d-707d-7c105c93120f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="libtomcrypt.vcxproj">
+      <Project>{1e3156e2-8ae6-ced7-13db-c8ae7f8fc5db}</Project>
+    </ProjectReference>
+    <ProjectReference Include="libtommath.vcxproj">
+      <Project>{36f6a20e-22ae-e45b-8bb5-bdb7778c7f4c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="minhook.vcxproj">
+      <Project>{5a9b3ac7-c67a-b962-cf92-44393bf11fc4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="minizip.vcxproj">
+      <Project>{c5553bc7-3135-ba62-3a4d-4539a6ab20c4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="udis86.vcxproj">
+      <Project>{28ad1720-144f-42f6-fd09-564ae94ac946}</Project>
+    </ProjectReference>
+    <ProjectReference Include="zlib.vcxproj">
+      <Project>{16cfa17c-0206-a30d-abf2-881097081f0f}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

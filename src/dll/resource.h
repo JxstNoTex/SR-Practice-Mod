@@ -5,6 +5,10 @@
 #define GSI                             102
 #define GSCC                            103
 
+
+#define IMAGE_SPLASH          300
+
+#define IMAGE_LOGO            301
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED

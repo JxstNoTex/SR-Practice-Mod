@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="extra">
+      <UniqueIdentifier>{0975660F-7589-8EC0-3E0B-3220AADE8AF1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="extra\udis86">
+      <UniqueIdentifier>{BB206B9F-A783-FA43-5009-33FA3C4BC6C6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="extra\udis86\libudis86">
+      <UniqueIdentifier>{8412007C-700C-29CE-5979-BFDE45128F3A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="udis86">
+      <UniqueIdentifier>{28AD1720-144F-42F6-FD09-564AE94AC946}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="udis86\libudis86">
+      <UniqueIdentifier>{31CB443F-1DC4-6391-46F6-4816324E439D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\deps\extra\udis86\libudis86\itab.c">
+      <Filter>extra\udis86\libudis86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\udis86\libudis86\decode.c">
+      <Filter>udis86\libudis86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\udis86\libudis86\syn-att.c">
+      <Filter>udis86\libudis86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\udis86\libudis86\syn-intel.c">
+      <Filter>udis86\libudis86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\udis86\libudis86\syn.c">
+      <Filter>udis86\libudis86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deps\udis86\libudis86\udis86.c">
+      <Filter>udis86\libudis86</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -13,10 +13,14 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="std_include">
+      <UniqueIdentifier>{7a835c63-b24f-4a95-b3ed-e664336d9db8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\GSIC\gsi.packdetour" />
     <None Include="..\GSIC\compiled.gscc" />
+    <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\dll\builtins.cpp">
@@ -31,14 +35,26 @@
     <ClCompile Include="..\src\dll\inject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\dll\Memhelp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\dll\Opcodes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\dll\pch.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\dll\component_loader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\dll\console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\dll\game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\dll\scheduler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\dll\std_include.cpp">
+      <Filter>std_include</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -54,9 +70,6 @@
     <ClInclude Include="..\src\dll\inject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\dll\Memhelp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\dll\offsets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -68,6 +81,24 @@
     </ClInclude>
     <ClInclude Include="..\src\dll\resource.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\dll\component_interface.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\dll\component_loader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\dll\game.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\dll\scheduler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\dll\symbols.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\dll\std_include.hpp">
+      <Filter>std_include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

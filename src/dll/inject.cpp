@@ -16,13 +16,6 @@ T7SPT t7spt;
 long long int data_1 = 0;
 int data_2 = 0;
 
-HMODULE GCM()
-{
-    HMODULE hModule = NULL;
-    GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS, (LPCSTR)GCM, &hModule);
-    return hModule;
-}
-
 
 
 bool injector::injectT7()
@@ -30,26 +23,6 @@ bool injector::injectT7()
     HMODULE hm = NULL;
     bool injectResponse = false;
 
-    //preload gscc
-    HRSRC Hres_GSCC = FindResource(GCM(), MAKEINTRESOURCE(GSCC), (LPCSTR)"BIN");
-    HGLOBAL HGlobal_GSCC = LoadResource(GCM(), Hres_GSCC);
-    void* pointer = (void*)LockResource(HGlobal_GSCC);
-    INT64 HSize_GSCC = SizeofResource(GCM(), Hres_GSCC);
-
-    GSCBuiltins::nlog("DLL Handle init loaded");
-    HRSRC Hres_GSI = FindResource(hm, MAKEINTRESOURCE(GSI), (LPCSTR)"BIN");
-    HGLOBAL HGlobal_GSI = LoadResource(hm, Hres_GSI);
-    void* pointer1 = (void*)LockResource(HGlobal_GSI);
-    INT64 HSize_GSI = SizeofResource(hm, Hres_GSI);
-
-    if (HSize_GSI <= 1)
-    {
-        GSCBuiltins::nlog("GSI wasnt allocated from resource");
-    }
-    if (HSize_GSCC <= 1)
-    {
-        GSCBuiltins::nlog("GSCC wasnt allocated from resource");
-    }
 
     if (GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, (LPCSTR)&GSCBuiltins::AddCustomFunction, &hm) == 0)
     {
@@ -59,21 +32,46 @@ bool injector::injectT7()
     }
     else
     {
+
+            //preload gscc
+            HRSRC Hres_GSCC = FindResource(hm, MAKEINTRESOURCE(GSCC), (LPCSTR)"BIN");
+            HGLOBAL HGlobal_GSCC = LoadResource(hm, Hres_GSCC);
+            void* pointer = (void*)LockResource(HGlobal_GSCC);
+            INT64 HSize_GSCC = SizeofResource(hm, Hres_GSCC);
+
+
+            HRSRC Hres_GSI = FindResource(hm, MAKEINTRESOURCE(GSI), (LPCSTR)"BIN");
+            HGLOBAL HGlobal_GSI = LoadResource(hm, Hres_GSI);
+            void* pointer1 = (void*)LockResource(HGlobal_GSI);
+            INT64 HSize_GSI = SizeofResource(hm, Hres_GSI);
+
+            if (HSize_GSI <= 1)
+            {
+                GSCBuiltins::nlog("GSI wasnt allocated from resource");
+            }
+            if (HSize_GSCC <= 1)
+            {
+                GSCBuiltins::nlog("GSCC wasnt allocated from resource");
+            }
+
             pID = injector::GetProcessIdByName("BlackOps3.exe");
-            //GSCBuiltins::nlog("%d", pID);
+            GSCBuiltins::nlog("%d", pID);
 
             pHandle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pID);
 
-            ReadProcessMemory(pHandle, (LPCVOID)0x00007FF665E07AB0, &data_1, sizeof(data_1), 0);
+            ReadProcessMemory(pHandle, (LPCVOID)OFFSET(0x9407AB0), &data_1, sizeof(data_1), 0);
 
-            ReadProcessMemory(pHandle, (LPCVOID)(0x00007FF665E07AB0 + 0x14), &data_2, sizeof(data_2), 0);
+            ReadProcessMemory(pHandle, (LPCVOID)(OFFSET(0x9407AB0) + 0x14), &data_2, sizeof(data_2), 0);
 
             UINT64 sptGlobal = data_1;
             int sptCount = data_2;
 
+            GSCBuiltins::nlog("%x", sptGlobal);
+            GSCBuiltins::nlog("%d", sptCount);
 
             for (int i = 0; i < sptCount; i++)
             {
+                //SCBuiltins::nlog("%d", i);
                 T7SPT t7spt;
                 ReadProcessMemory(pHandle, (LPCVOID)(sptGlobal + (i * 0x18)), &t7spt, sizeof(t7spt), 0);
                 char strBuff[39];

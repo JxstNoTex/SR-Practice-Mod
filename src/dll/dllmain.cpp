@@ -6,10 +6,11 @@
 #include <luaconf.h>
 #include <lualib.h>
 
+#include "component_loader.hpp"
 #include "builtins.h"
 #include "Opcodes.h"
 #include "detours.h"
-
+#include "inject.h"
 
 int init()
 {
@@ -27,11 +28,17 @@ extern "C"
 {
 	int __declspec(dllexport) entry(lua_State* L)
 	{
+		init();
 		GSCBuiltins::Init();
 		ScriptDetours::InstallHooks();
 		Opcodes::Init();
+		
 		GSCBuiltins::nlog("dll loaded");
-		return init();
+		component_loader::post_unpack();
+
+
+
+		return 1;
 	}
 }
 
