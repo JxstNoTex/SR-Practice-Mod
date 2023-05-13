@@ -1,28 +1,11 @@
 #pragma once
 
 #include "detours.h"
+#include "offsets.h"
+#include "resource.h"
+#include "builtins.h"
+#include "resource.h"
 #include <TlHelp32.h>
-
-
-
-class injector
-{
-	public:
-		bool injectT7();
-		static bool FreeT7();
-		static DWORD GetProcessIdByName(const char* name);
-
-		HRSRC Hres_GSCC;
-		HGLOBAL HGlobal_GSCC;
-		void* pointer;
-		INT64 HSize_GSCC;
-
-		HRSRC Hres_GSI;
-		HGLOBAL HGlobal_GSI;
-		void* pointer1;
-		INT64 HSize_GSI;
-};
-
 
 struct T7SPT
 {
@@ -33,3 +16,33 @@ struct T7SPT
 		long long lpBuffer;
 
 };
+
+
+class injector
+{
+	public:
+		bool injectT7();
+		bool FreeT7();
+		DWORD GetProcessIdByName(const char* name);
+
+		HRSRC Hres_GSCC;
+		HGLOBAL HGlobal_GSCC;
+		void* pointer;
+		INT64 HSize_GSCC;
+
+		HRSRC Hres_GSI;
+		HGLOBAL HGlobal_GSI;
+		void* pointer1;
+		INT64 HSize_GSI;
+	private:
+		DWORD pID;
+		HANDLE pHandle;
+		T7SPT t7spt;
+		T7SPT injectedScript;
+		int InjectedBuffSize;
+		long long int data_1 = 0;
+		int data_2 = 0;
+		unsigned long long llpModifiedSPTStruct;
+};
+
+

@@ -1,21 +1,11 @@
 #include "pch.h"
-#include "offsets.h"
-#include "resource.h"
-#include "builtins.h"
-#include "resource.h"
+
 #include "inject.h"
-#include "pch.h"
 
 
 #define OFF_ScrVarGlob REBASE(0x51A3500)
 #define OFFSET(x)((INT64)GetModuleHandle(NULL) + (INT64)x)
 
-DWORD pID;
-HANDLE pHandle;
-T7SPT t7spt;
-
-long long int data_1 = 0;
-int data_2 = 0;
 
 
 bool injector::injectT7()
@@ -89,7 +79,7 @@ bool injector::injectT7()
                     //std::cout << "loaded Script number: " << i << std::endl;
                     //std::cout << "String Name: " << strBuff << std::endl;
 
-                    unsigned long long llpModifiedSPTStruct;
+                    
                     unsigned long long llpOriginalBuffer;
                     int OriginalSourceChecksum;
 
@@ -104,6 +94,8 @@ bool injector::injectT7()
                     t7spt.lpBuffer = (long long)malloc(HSize_GSCC);
                     WriteProcessMemory(pHandle, (LPVOID)(t7spt.lpBuffer), (LPVOID)pointer, HSize_GSCC, 0);
 
+                    injectedScript = t7spt;
+                    InjectedBuffSize = t7spt.Buffersize;
 
                     WriteProcessMemory(pHandle, (LPVOID)(llpModifiedSPTStruct), (LPVOID)&t7spt, sizeof(t7spt), 0);
 
@@ -123,6 +115,9 @@ bool injector::injectT7()
 
 bool injector::FreeT7()
 {
+
+    free((void*)injectedScript.lpBuffer);
+    WriteProcessMemory(pHandle, (LPVOID)(llpModifiedSPTStruct), (LPVOID)&t7spt, sizeof(t7spt), 0);
     return 0;
 }
 

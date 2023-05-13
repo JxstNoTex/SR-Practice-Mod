@@ -34,7 +34,7 @@ void unload()
 
 	//unload resource and gsc
 
-	injector::FreeT7();
+	inject.FreeT7();
 
 	ScriptDetours::ResetDetours();
 	BOOL gsiResult = UnlockResource(inject.Hres_GSI);
