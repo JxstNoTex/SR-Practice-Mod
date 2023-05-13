@@ -26,7 +26,7 @@ int init()
 
 extern "C"
 {
-	int __declspec(dllexport) entry(lua_State* L)
+	void __declspec(dllexport) entry(lua_State* L)
 	{
 		init();
 		GSCBuiltins::Init();
@@ -36,9 +36,7 @@ extern "C"
 		GSCBuiltins::nlog("dll loaded");
 		component_loader::post_unpack();
 
-
-
-		return 1;
+		atexit(component_loader::pre_destroy);
 	}
 }
 
