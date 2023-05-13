@@ -2,12 +2,25 @@
 
 #include "detours.h"
 #include <TlHelp32.h>
+
+
+
 class injector
 {
 	public:
 		bool injectT7();
-		DWORD GetProcessIdByName(const char* name);
+		static bool FreeT7();
+		static DWORD GetProcessIdByName(const char* name);
 
+		HRSRC Hres_GSCC;
+		HGLOBAL HGlobal_GSCC;
+		void* pointer;
+		INT64 HSize_GSCC;
+
+		HRSRC Hres_GSI;
+		HGLOBAL HGlobal_GSI;
+		void* pointer1;
+		INT64 HSize_GSI;
 };
 
 

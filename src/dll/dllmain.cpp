@@ -11,18 +11,38 @@
 #include "Opcodes.h"
 #include "detours.h"
 #include "inject.h"
+#include "resource.h"
+
+injector inject;
 
 int init()
 {
 	//create object reference for injector
-	injector obj;
-	obj.injectT7();
+	
+	inject.injectT7();
+
+
 	return 1;
 }
 
 
+void unload()
+{
+	//destroy console
+	component_loader::pre_destroy();
 
 
+	//unload resource and gsc
+
+	injector::FreeT7();
+
+	ScriptDetours::ResetDetours();
+	BOOL gsiResult = UnlockResource(inject.Hres_GSI);
+	gsiResult = FreeResource(inject.Hres_GSI);
+
+	BOOL gccResult1 = UnlockResource(inject.Hres_GSCC);
+	gccResult1 = FreeResource(inject.Hres_GSCC);
+}
 
 extern "C"
 {
@@ -36,7 +56,7 @@ extern "C"
 		GSCBuiltins::nlog("dll loaded");
 		component_loader::post_unpack();
 
-		atexit(component_loader::pre_destroy);
+		atexit(unload);
 	}
 }
 

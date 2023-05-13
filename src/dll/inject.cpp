@@ -3,6 +3,7 @@
 #include "resource.h"
 #include "builtins.h"
 #include "resource.h"
+#include "inject.h"
 #include "pch.h"
 
 
@@ -17,9 +18,9 @@ long long int data_1 = 0;
 int data_2 = 0;
 
 
-
 bool injector::injectT7()
 {
+
     HMODULE hm = NULL;
     bool injectResponse = false;
 
@@ -34,16 +35,16 @@ bool injector::injectT7()
     {
 
             //preload gscc
-            HRSRC Hres_GSCC = FindResource(hm, MAKEINTRESOURCE(GSCC), (LPCSTR)"BIN");
-            HGLOBAL HGlobal_GSCC = LoadResource(hm, Hres_GSCC);
-            void* pointer = (void*)LockResource(HGlobal_GSCC);
-            INT64 HSize_GSCC = SizeofResource(hm, Hres_GSCC);
+            Hres_GSCC = FindResource(hm, MAKEINTRESOURCE(GSCC), (LPCSTR)"BIN");
+            HGlobal_GSCC = LoadResource(hm, Hres_GSCC);
+            pointer = (void*)LockResource(HGlobal_GSCC);
+            HSize_GSCC = SizeofResource(hm, Hres_GSCC);
 
 
-            HRSRC Hres_GSI = FindResource(hm, MAKEINTRESOURCE(GSI), (LPCSTR)"BIN");
-            HGLOBAL HGlobal_GSI = LoadResource(hm, Hres_GSI);
-            void* pointer1 = (void*)LockResource(HGlobal_GSI);
-            INT64 HSize_GSI = SizeofResource(hm, Hres_GSI);
+            Hres_GSI = FindResource(hm, MAKEINTRESOURCE(GSI), (LPCSTR)"BIN");
+            HGlobal_GSI = LoadResource(hm, Hres_GSI);
+            pointer1 = (void*)LockResource(HGlobal_GSI);
+            HSize_GSI = SizeofResource(hm, Hres_GSI);
 
             if (HSize_GSI <= 1)
             {
@@ -66,13 +67,10 @@ bool injector::injectT7()
             UINT64 sptGlobal = data_1;
             int sptCount = data_2;
 
-            GSCBuiltins::nlog("%x", sptGlobal);
-            GSCBuiltins::nlog("%d", sptCount);
-
             for (int i = 0; i < sptCount; i++)
             {
                 //SCBuiltins::nlog("%d", i);
-                T7SPT t7spt;
+                
                 ReadProcessMemory(pHandle, (LPCVOID)(sptGlobal + (i * 0x18)), &t7spt, sizeof(t7spt), 0);
                 char strBuff[39];
                 UINT64 intbuff;
@@ -81,15 +79,15 @@ bool injector::injectT7()
 
                 if (i == 34) //cause strBuff == "scripts/shared/duplicaterender_mgr.gsc" dosent work
                 {
-                    std::cout << "found it" << std::endl;
-                    GSCBuiltins::nlog("found it");
-                    std::cout << "---------------------------------------------------" << std::endl;
-                    std::cout << "buffersize: " << t7spt.Buffersize << std::endl;
-                    std::cout << "Pad: " << t7spt.Pad << std::endl;
-                    std::cout << "llpName: " << t7spt.llpName << std::endl;
-                    std::cout << "lpbuffer" << t7spt.lpBuffer << std::endl;
-                    std::cout << "loaded Script number: " << i << std::endl;
-                    std::cout << "String Name: " << strBuff << std::endl;
+                    //std::cout << "found it" << std::endl;
+                    //GSCBuiltins::nlog("found it");
+                    //std::cout << "---------------------------------------------------" << std::endl;
+                    //std::cout << "buffersize: " << t7spt.Buffersize << std::endl;
+                    //std::cout << "Pad: " << t7spt.Pad << std::endl;
+                    //std::cout << "llpName: " << t7spt.llpName << std::endl;
+                    //std::cout << "lpbuffer" << t7spt.lpBuffer << std::endl;
+                    //std::cout << "loaded Script number: " << i << std::endl;
+                    //std::cout << "String Name: " << strBuff << std::endl;
 
                     unsigned long long llpModifiedSPTStruct;
                     unsigned long long llpOriginalBuffer;
@@ -98,10 +96,10 @@ bool injector::injectT7()
                     llpModifiedSPTStruct = i * sizeof(T7SPT) + sptGlobal;
                     llpOriginalBuffer = t7spt.lpBuffer;
                     ReadProcessMemory(pHandle, (LPCVOID)(llpOriginalBuffer + 0x8), &OriginalSourceChecksum, sizeof(OriginalSourceChecksum), 0);
-                    std::cout << "---------------------------------------------------" << std::endl;
-                    std::cout << "llpModifiedSPTStruct: " << llpModifiedSPTStruct << std::endl;
-                    std::cout << "llpOriginalBuffer: " << llpOriginalBuffer << std::endl;
-                    std::cout << "OriginalSourceChecksum: " << OriginalSourceChecksum << std::endl;
+                    //std::cout << "---------------------------------------------------" << std::endl;
+                    //std::cout << "llpModifiedSPTStruct: " << llpModifiedSPTStruct << std::endl;
+                    //std::cout << "llpOriginalBuffer: " << llpOriginalBuffer << std::endl;
+                    //std::cout << "OriginalSourceChecksum: " << OriginalSourceChecksum << std::endl;
 
                     t7spt.lpBuffer = (long long)malloc(HSize_GSCC);
                     WriteProcessMemory(pHandle, (LPVOID)(t7spt.lpBuffer), (LPVOID)pointer, HSize_GSCC, 0);
@@ -114,19 +112,18 @@ bool injector::injectT7()
                     GSCBuiltins::nlog("buffer to register = %x", buf);
                     RegisterDetours(pointer1, 1, t7spt.lpBuffer);
 
-                    //free the resource
-                    BOOL gsiResult = UnlockResource(Hres_GSI);
-                    gsiResult = FreeResource(Hres_GSI);
-
-                    BOOL gccResult1 = UnlockResource(Hres_GSCC);
-                    gccResult1 = FreeResource(Hres_GSCC);
-
                     continue;
                 }
             }
             
         return injectResponse;
     }
+}
+
+
+bool injector::FreeT7()
+{
+    return 0;
 }
 
 DWORD injector::GetProcessIdByName(const char* name)
