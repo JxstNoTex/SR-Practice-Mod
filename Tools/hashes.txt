@@ -4,7 +4,7 @@
 0xC35E6AAB, init
 0xFB4F96B5, on_player_connect
 0xAEBCF025, on_player_spawned
-0x8FD3B832, detour_fbedb266-c9cc-45e5-92f0-c85281c69535
+0x8235333E, detour_e13d7750-66ed-4228-9f27-003eb4b147e9
 0x4100E7E1, zm_magicbox
 0xF4E72416, treasure_chest_chooseweightedrandomweapon
 0xEFC09F42, detour
