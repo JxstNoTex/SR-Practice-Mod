@@ -47,6 +47,7 @@ private:
 	static void GScr_catch_exit(int scriptInst);
 	static void GScr_abort(int scriptInst);
 	static void GScr_enableonlinematch(int scriptInst);
+	static void GScr_Add(int scriptInst);
 
 public:
 	static void nlog(const char* str, ...);

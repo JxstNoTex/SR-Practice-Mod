@@ -24,7 +24,7 @@ void GSCBuiltins::Generate()
 	// Link and execute detours included in loaded scripts.
 	AddCustomFunction("detour", GSCBuiltins::GScr_detour);
 
-	
+	AddCustomFunction("add", GSCBuiltins::GScr_Add);
 	
 	// compiler::relinkdetours()
 	// Re-link any detours that did not get linked previously due to script load order, etc.
@@ -107,6 +107,12 @@ void GSCBuiltins::GScr_nprintln(int scriptInst)
 	// note: we use 1 as our param index because custom builtin params start at 1. The first param (0) is always the name of the function called.
 	// we also use %s to prevent a string format vulnerability!
 	nlog("%s", ScrVm_GetString(0, 1));
+}
+
+void GSCBuiltins::GScr_Add(int scriptInst)
+{
+	int get = ScrVm_GetInt(0, 1);
+	ScrVm_AddInt(0, 1);
 }
 
 void GSCBuiltins::GScr_detour(int scriptInst)

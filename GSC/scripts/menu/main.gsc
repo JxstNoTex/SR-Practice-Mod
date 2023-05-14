@@ -13,7 +13,7 @@ on_player_spawned()
     while(true)
     {
         self enableInvulnerability();
-        self iPrintLnBold("Injected! Compiler by serious");
+        self iPrintLnBold("test = " + level.test);
         wait 1;
     }
 }

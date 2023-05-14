@@ -14,6 +14,8 @@
 autoexec __init__sytem__()
 {
 	compiler::detour();
+	level.test = compiler::add(5);
+	
 	system::register("serious", ::__init__, undefined, undefined);
 }
 

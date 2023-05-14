@@ -4,12 +4,14 @@
 0xC35E6AAB, init
 0xFB4F96B5, on_player_connect
 0xAEBCF025, on_player_spawned
-0xDA759DEE, detour_1bc12155-098d-4607-b9ac-3c2abd675580
+0xAE91B7C9, detour_8f05c11d-b289-4d59-9150-943752e6dfeb
 0x4100E7E1, zm_magicbox
 0xF4E72416, treasure_chest_chooseweightedrandomweapon
 0xEFC09F42, detour
 0xDDDA9606, compiler
 0xBDF61114, isprofilebuild
+0x69554B3E, add
+0x8181A3A1, test
 0x50F16166, register
 0x10777417, undefined
 0xBEA63B8A, system
