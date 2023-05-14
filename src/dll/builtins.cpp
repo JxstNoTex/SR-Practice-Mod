@@ -133,24 +133,6 @@ void GSCBuiltins::GScr_relinkDetours(int scriptInst)
 	ScriptDetours::LinkDetours();
 }
 
-void GSCBuiltins::GScr_livesplit(int scriptInst)
-{
-	if (scriptInst)
-	{
-		return;
-	}
-
-	HANDLE livesplit = CreateFile("\\\\.\\pipe\\LiveSplit", GENERIC_READ | GENERIC_WRITE, FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, NULL);
-	if (!livesplit)
-	{
-		return;
-	}
-
-	const char* message = ScrVm_GetString(0, 1);
-	WriteFile(livesplit, message, strlen(message), nullptr, NULL);
-	CloseHandle(livesplit);
-}
-
 // str_path, n_offset, char_value
 void GSCBuiltins::GScr_patchbyte(int scriptInst)
 {
@@ -319,11 +301,12 @@ void GSCBuiltins::GScr_setmempool(int scriptInst)
 
 	void* oldPool = newVarMemPool;
 	newVarMemPool = (char*)_aligned_malloc(numBytes, 128);
-	//if (newVarMemPool <= 0)
-	//{
-	//	nlog("Failed to allocate memory! Pointer was null");
-	//	return;
-	//}
+//ensble fail safe
+	if (newVarMemPool <= 0)
+	{
+		nlog("Failed to allocate memory! Pointer was null");
+		return;
+	}
 
 	memset(newVarMemPool, 0, numBytes);
 	memcpy(newVarMemPool, (void*)*llpScrVarMemPool, MEM_SCRVAR_SPACE(scriptInst));
