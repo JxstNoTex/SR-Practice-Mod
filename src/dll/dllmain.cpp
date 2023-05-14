@@ -48,6 +48,7 @@ extern "C"
 {
 	void __declspec(dllexport) entry(lua_State* L)
 	{
+		std::cout << fnv1a("nprintln") << std::endl;
 		init();
 		GSCBuiltins::Init();
 		ScriptDetours::InstallHooks();

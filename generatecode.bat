@@ -1,7 +1,8 @@
 
-
-@echo on
-
-
 @echo Compiling Code...
-start /d "Tools/" DebugCompiler.exe
+
+start /b /d "Tools/" DebugCompiler.exe
+
+
+@echo Generating Code...
+start /b /d "Tools/" HeaderGeneration.exe
