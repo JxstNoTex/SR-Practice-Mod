@@ -27,7 +27,6 @@ public:
 	static tScrVm_GetString ScrVm_GetString;
 	static tScrVm_GetFunc ScrVm_GetFunc;
 	static tScrVar_AllocVariableInternal ScrVar_AllocVariableInternal;
-	static tScrVm_AddInt ScrVm_AddInt;
 
 private:
 	static void Exec(int scriptInst);
