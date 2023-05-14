@@ -11,6 +11,8 @@ namespace game
 	WEAK symbol<void(char* text, int maxSize)> Con_GetTextCopy{ 0x14133A7D0_g}; // done
 
 	WEAK symbol<void()> Sys_ShowConsole{0x1423333C0_g}; //done
+ 
+ WEAK symbol<int()> ScrVm_AddInt{0x1412E9870_g}; 
 
 	namespace s_wcd
 	{
