@@ -38,7 +38,6 @@ private:
 	static void GScr_nprintln(int scriptInst);
 	static void GScr_detour(int scriptInst);
 	static void GScr_relinkDetours(int scriptInst);
-	static void GScr_livesplit(int scriptInst);
 	static void GScr_patchbyte(int scriptInst);
 	static void GScr_erasefunc(int scriptInst);
 	static void GScr_setmempool(int scriptInst);
