@@ -110,8 +110,8 @@ void GSCBuiltins::GScr_nprintln(int scriptInst)
 
 void GSCBuiltins::GScr_Add(int scriptInst)
 {
-	int get = ScrVm_GetInt(0, 1);
-	ScrVm_AddInt(0, 1);
+	int get = ScrVm_GetInt(0, 1) + 5;
+	ScrVm_AddInt(scriptInst, get);
 }
 
 void GSCBuiltins::GScr_detour(int scriptInst)
