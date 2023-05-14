@@ -1,0 +1,10 @@
+C:\Users\Tex\source\repos\t7compiler\T7CompilerLib\bin\Debug\T7PCV2.db
+C:\Users\Tex\source\repos\t7compiler\T7CompilerLib\bin\Debug\T7CompilerLib.dll.config
+C:\Users\Tex\source\repos\t7compiler\T7CompilerLib\bin\Debug\T7CompilerLib.dll
+C:\Users\Tex\source\repos\t7compiler\T7CompilerLib\bin\Debug\T7CompilerLib.pdb
+C:\Users\Tex\source\repos\t7compiler\T7CompilerLib\bin\Debug\System.ValueTuple.dll
+C:\Users\Tex\source\repos\t7compiler\T7CompilerLib\obj\Debug\T7CompilerLib.csproj.AssemblyReference.cache
+C:\Users\Tex\source\repos\t7compiler\T7CompilerLib\obj\Debug\T7CompilerLib.csproj.CoreCompileInputs.cache
+C:\Users\Tex\source\repos\t7compiler\T7CompilerLib\obj\Debug\T7CompilerLib.csproj.CopyComplete
+C:\Users\Tex\source\repos\t7compiler\T7CompilerLib\obj\Debug\T7CompilerLib.dll
+C:\Users\Tex\source\repos\t7compiler\T7CompilerLib\obj\Debug\T7CompilerLib.pdb

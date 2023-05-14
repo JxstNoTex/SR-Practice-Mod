@@ -1,0 +1,17 @@
+C:\Users\Tex\source\repos\t7compiler\External\bin\x64\Debug\External.dll.config
+C:\Users\Tex\source\repos\t7compiler\External\bin\x64\Debug\External.dll
+C:\Users\Tex\source\repos\t7compiler\External\bin\x64\Debug\External.pdb
+C:\Users\Tex\source\repos\t7compiler\External\bin\x64\Debug\Iced.xml
+C:\Users\Tex\source\repos\t7compiler\External\bin\x64\Debug\System.Buffers.xml
+C:\Users\Tex\source\repos\t7compiler\External\bin\x64\Debug\System.Collections.Immutable.xml
+C:\Users\Tex\source\repos\t7compiler\External\bin\x64\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Tex\source\repos\t7compiler\External\bin\x64\Debug\System.Memory.xml
+C:\Users\Tex\source\repos\t7compiler\External\bin\x64\Debug\System.Numerics.Vectors.xml
+C:\Users\Tex\source\repos\t7compiler\External\bin\x64\Debug\System.Reflection.Metadata.xml
+C:\Users\Tex\source\repos\t7compiler\External\bin\x64\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Tex\source\repos\t7compiler\External\obj\x64\Debug\External.csproj.AssemblyReference.cache
+C:\Users\Tex\source\repos\t7compiler\External\obj\x64\Debug\External.csproj.CoreCompileInputs.cache
+C:\Users\Tex\source\repos\t7compiler\External\obj\x64\Debug\External.csproj.Fody.CopyLocal.cache
+C:\Users\Tex\source\repos\t7compiler\External\obj\x64\Debug\External.csproj.CopyComplete
+C:\Users\Tex\source\repos\t7compiler\External\obj\x64\Debug\External.dll
+C:\Users\Tex\source\repos\t7compiler\External\obj\x64\Debug\External.pdb

@@ -1,0 +1,17 @@
+C:\Users\Tex\source\repos\t7compiler\TreyarchCompiler\bin\x64\Debug\T7PCV2.db
+C:\Users\Tex\source\repos\t7compiler\TreyarchCompiler\bin\x64\Debug\vm_codes.db2
+C:\Users\Tex\source\repos\t7compiler\TreyarchCompiler\bin\x64\Debug\TreyarchCompiler.dll
+C:\Users\Tex\source\repos\t7compiler\TreyarchCompiler\bin\x64\Debug\TreyarchCompiler.pdb
+C:\Users\Tex\source\repos\t7compiler\TreyarchCompiler\bin\x64\Debug\T7CompilerLib.pdb
+C:\Users\Tex\source\repos\t7compiler\TreyarchCompiler\bin\x64\Debug\T7CompilerLib.dll.config
+C:\Users\Tex\source\repos\t7compiler\TreyarchCompiler\bin\x64\Debug\T89CompilerLib.pdb
+C:\Users\Tex\source\repos\t7compiler\TreyarchCompiler\bin\x64\Debug\T89CompilerLib.dll.config
+C:\Users\Tex\source\repos\t7compiler\TreyarchCompiler\bin\x64\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Tex\source\repos\t7compiler\TreyarchCompiler\obj\x64\Debug\TreyarchCompiler.csproj.AssemblyReference.cache
+C:\Users\Tex\source\repos\t7compiler\TreyarchCompiler\obj\x64\Debug\TreyarchCompiler.Properties.Resources.resources
+C:\Users\Tex\source\repos\t7compiler\TreyarchCompiler\obj\x64\Debug\TreyarchCompiler.csproj.GenerateResource.cache
+C:\Users\Tex\source\repos\t7compiler\TreyarchCompiler\obj\x64\Debug\TreyarchCompiler.csproj.CoreCompileInputs.cache
+C:\Users\Tex\source\repos\t7compiler\TreyarchCompiler\obj\x64\Debug\TreyarchCompiler.csproj.Fody.CopyLocal.cache
+C:\Users\Tex\source\repos\t7compiler\TreyarchCompiler\obj\x64\Debug\TreyarchCompiler.csproj.CopyComplete
+C:\Users\Tex\source\repos\t7compiler\TreyarchCompiler\obj\x64\Debug\TreyarchCompiler.dll
+C:\Users\Tex\source\repos\t7compiler\TreyarchCompiler\obj\x64\Debug\TreyarchCompiler.pdb

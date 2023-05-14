@@ -1,0 +1,8 @@
+C:\Users\Tex\source\repos\t7compiler\T8CompilerLib\bin\Debug\vm_codes.db2
+C:\Users\Tex\source\repos\t7compiler\T8CompilerLib\bin\Debug\T89CompilerLib.dll.config
+C:\Users\Tex\source\repos\t7compiler\T8CompilerLib\bin\Debug\T89CompilerLib.dll
+C:\Users\Tex\source\repos\t7compiler\T8CompilerLib\bin\Debug\T89CompilerLib.pdb
+C:\Users\Tex\source\repos\t7compiler\T8CompilerLib\obj\Debug\T89CompilerLib.csproj.AssemblyReference.cache
+C:\Users\Tex\source\repos\t7compiler\T8CompilerLib\obj\Debug\T89CompilerLib.csproj.CoreCompileInputs.cache
+C:\Users\Tex\source\repos\t7compiler\T8CompilerLib\obj\Debug\T89CompilerLib.dll
+C:\Users\Tex\source\repos\t7compiler\T8CompilerLib\obj\Debug\T89CompilerLib.pdb
