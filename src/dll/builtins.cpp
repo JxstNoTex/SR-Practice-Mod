@@ -3,6 +3,7 @@
 #include "builtins.h"
 #include "offsets.h"
 #include "detours.h"
+#include "game.hpp"
 
 #include <Windows.h>
 
@@ -11,7 +12,6 @@
 std::unordered_map<int, void*> GSCBuiltins::CustomFunctions;
 tScrVm_GetString GSCBuiltins::ScrVm_GetString;
 tScrVm_GetInt GSCBuiltins::ScrVm_GetInt;
-tScrVm_AddInt GSCBuiltins::ScrVm_AddInt;
 tScrVar_AllocVariableInternal GSCBuiltins::ScrVar_AllocVariableInternal;
 tScrVm_GetFunc GSCBuiltins::ScrVm_GetFunc;
 
@@ -76,7 +76,6 @@ void GSCBuiltins::Init()
 	ScrVm_GetInt = (tScrVm_GetInt)OFF_ScrVm_GetInt;
 	ScrVar_AllocVariableInternal = (tScrVar_AllocVariableInternal)OFF_ScrVar_AllocVariableInternal;
 	ScrVm_GetFunc = (tScrVm_GetFunc)OFF_ScrVm_GetFunc;
-	ScrVm_AddInt = (tScrVm_AddInt)OFF_ScrVm_AddInt;
 }
 
 void GSCBuiltins::AddCustomFunction(const char* name, void* funcPtr)
