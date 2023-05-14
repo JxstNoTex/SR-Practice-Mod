@@ -12,7 +12,7 @@ namespace game
 
 	WEAK symbol<void()> Sys_ShowConsole{0x1423333C0_g}; //done
  
- WEAK symbol<int()> ScrVm_AddInt{0x1412E9870_g}; 
+	WEAK symbol<int(int scriptInst, int var)> ScrVm_AddInt{0x1412E9870_g}; 
 
 	namespace s_wcd
 	{
