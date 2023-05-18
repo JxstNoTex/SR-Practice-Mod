@@ -1,10 +1,11 @@
   General
 
   level.fn_custom_round_ai_spawn
+  random_perks: Practice mode has best weapons set
 
   Zod
 
-Box Location is left
+Box: Practice mode has best weapons set
 Perks
 Special Rounds
 EE
@@ -14,8 +15,8 @@ BossRush
 
   Factory
 
-Box Yes
-Perks
+Box: Practice mode has best weapons set
+Perks: Practice mode has Stamina has 5th perk
 Special Rounds
 EE
 Song

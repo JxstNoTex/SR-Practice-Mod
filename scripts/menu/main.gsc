@@ -1,8 +1,19 @@
 init()
 {
+    //Determines if the game played is megas or not
+    level.is_megas = undefined;
+    level thread get_gum_category();
+
+    //This checks if random perk locations should be changed
+    if(level.script == "zm_factory" || level.script == "zm_zod" &&  world.practice){
+        level thread custom_perk_locations();
+    }
+
+
     level.tick = 0.05;
     if(!isdefined(level.detour_functions)) level.detour_functions = [];
     level.debug = 1;
+
 
     //This creates the possible gamemodes
     if(!isDefined(world.practice)) level create_sr_modes();
@@ -34,14 +45,19 @@ init()
     //Shows the available round end time
     level thread showEndTimes();
 
+
+
     //Patches level.powerup_special_drop_override
     level thread powerup_special_drop_override();
     
     //Patches level.customrandomweaponweights
     level thread customrandomweaponweights();
 
-    while(!isDefined(level.randomize_perk_machine_location)) wait GAMETICK;
-    level.randomize_perk_machine_location = 0;
+    //Patches level.zm_custom_spawn_location_selection
+    level thread zm_custom_spawn_location_selection();
+
+    /*while(!isDefined(level.randomize_perk_machine_location)) wait GAMETICK;
+    level.randomize_perk_machine_location = 0;*/
 
 }
 
@@ -92,6 +108,9 @@ on_player_connect()
 
     //Allows me to check how many detours are being used
     if(self ishost() && level.debug) self thread debug_hud();
+
+    //Shows number of manipulable spawns at SoE and Giant Style
+    if(self IsHost() && level.debug) level thread n_zombie_spawn_hud();
 }
 
 on_player_spawned()
@@ -101,9 +120,9 @@ on_player_spawned()
     if(level.debug){
         wait 5;
         self enableInvulnerability();
-        //self.ignoreme = 1;
+        self.ignoreme = 1;
         self.score = 777770;
-
+        self notify("stop_player_out_of_playable_area_monitor");
 
         self.bgb_pack = [];
         self.bgb_pack_randomized = [];

@@ -1,6 +1,6 @@
 detour zm_perks<scripts\zm\_zm_perks.gsc>::give_random_perk()
 {
-	if(!isDefined(level.detour_functions["zm_perks::is_weapon_upgraded"])) level.detour_functions["zm_perks::is_weapon_upgraded"] = @zm_perks<scripts\zm\_zm_perks.gsc>::has_perk_paused;
+	if(!isDefined(level.detour_functions["zm_perks::has_perk_paused"])) level.detour_functions["zm_perks::has_perk_paused"] = @zm_perks<scripts\zm\_zm_perks.gsc>::has_perk_paused;
     if(!isDefined(level.detour_functions["zm_perks::give_perk"])) level.detour_functions["zm_perks::give_perk"] = @zm_perks<scripts\zm\_zm_perks.gsc>::give_perk;
 
 
@@ -14,7 +14,7 @@ detour zm_perks<scripts\zm\_zm_perks.gsc>::give_random_perk()
 		{
 			continue;
 		}
-		if(!self hasperk(perk) && !self [[ level.detour_functions["zm_perks::is_weapon_upgraded"] ]](perk) )
+		if(!self hasperk(perk) && !self [[ level.detour_functions["zm_perks::has_perk_paused"] ]](perk) )
 		{
 			perks[perks.size] = perk;
 		}
@@ -82,4 +82,63 @@ detour zm_perks<scripts\zm\_zm_perks.gsc>::give_random_perk()
 	}
 	return random_perk;
 }
+
+
+/*detour zm_perks<scripts\zm\_zm_perks.gsc>::perk_machine_think(str_key, s_custom_perk)
+{
+	str_endon = str_key + "_power_thread_end";
+	level endon(str_endon);
+	//level thread debug_message(str_endon);
+	str_on = s_custom_perk.alias + "_on";
+	str_off = s_custom_perk.alias + "_off";
+	str_notify = str_key + "_power_on";
+	while(true)
+	{
+		machine = getentarray(s_custom_perk.radiant_machine_name, "targetname");
+		machine_triggers = getentarray(s_custom_perk.radiant_machine_name, "target");
+		for(i = 0; i < machine.size; i++)
+		{
+			machine[i] setmodel(level.machine_assets[str_key].off_model);
+			machine[i] solid();
+		}
+		level thread zm_perks::do_initial_power_off_callback(machine, str_key);
+		array::thread_all(machine_triggers, zm_perks::set_power_on, 0);
+
+
+		//if(level.debug)level thread debug_message(str_on);
+		level waittill(str_on);
+
+
+		//if(level.debug)level.players[0] iPrintLnBold(str_on);
+
+
+		for(i = 0; i < machine.size; i++)
+		{
+			machine[i] setmodel(level.machine_assets[str_key].on_model);
+			machine[i] vibrate(vectorscale((0, -1, 0), 100), 0.3, 0.4, 3);
+			machine[i] playsound("zmb_perks_power_on");
+			machine[i] thread zm_perks::perk_fx(s_custom_perk.machine_light_effect);
+			machine[i] thread zm_perks::play_loop_on_machine();
+		}
+		level notify(str_notify);
+
+
+		//if(level.debug)level.players[0] iPrintLnBold(str_notify);
+
+
+		array::thread_all(machine_triggers, zm_perks::set_power_on, 1);
+		if(isdefined(level.machine_assets[str_key].power_on_callback))
+		{
+			array::thread_all(machine, level.machine_assets[str_key].power_on_callback);
+		}
+		level waittill(str_off);
+		if(isdefined(level.machine_assets[str_key].power_off_callback))
+		{
+			array::thread_all(machine, level.machine_assets[str_key].power_off_callback);
+		}
+		array::thread_all(machine, zm_perks::turn_perk_off);
+	}
+}*/
+
+
 
