@@ -21,6 +21,7 @@ struct T7SPT
 class injector
 {
 	public:
+		HMODULE hm = NULL;
 		bool injectT7();
 		bool FreeT7();
 		DWORD GetProcessIdByName(const char* name);

@@ -4,7 +4,7 @@
 0xC35E6AAB, init
 0xFB4F96B5, on_player_connect
 0xAEBCF025, on_player_spawned
-0xB12B3F33, detour_74149fa2-d343-4d5a-a600-acafaf07d200
+0x49EB1285, detour_3f756369-a9ea-46fc-bff8-d2697baccc39
 0x4100E7E1, zm_magicbox
 0xF4E72416, treasure_chest_chooseweightedrandomweapon
 0xEFC09F42, detour
@@ -12,8 +12,6 @@
 0xBDF61114, isprofilebuild
 0x83F44F87, addstr
 0x8181A3A1, test
-0x8C90DDD2, addbool
-0x2E076071, bool
 0x50F16166, register
 0x10777417, undefined
 0xBEA63B8A, system
@@ -21,10 +19,11 @@
 0xDABBE128, callback
 0xEB99DA89, on_connect
 0x356A4EE1, on_spawned
+0xF54B9C82, key
 0x428A889F, endon
 0x1970A3B3, self
 0xBE6B87F9, true
-0x83FD42B5, enableinvulnerability
+0x10A28E0B, getkeys
 0x2E4B8C78, iprintlnbold
 0x5DC5E20A, player
 0xC957F6B6, i

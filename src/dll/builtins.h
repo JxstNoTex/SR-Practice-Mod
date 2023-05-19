@@ -2,6 +2,7 @@
 #include "framework.h"
 #include <winnt.h>
 #include <unordered_map>
+#include "Gsc-Utils/Gsc-Utils.h"
 
 struct alignas(8) BuiltinFunctionDef
 {
@@ -20,6 +21,7 @@ typedef INT64(__fastcall* tScrVm_GetFunc)(unsigned int inst, unsigned int index)
 class GSCBuiltins
 {
 public:
+	
 	static void Init();
 	static void AddCustomFunction(const char* name, void* funcPtr);
 	static tScrVm_GetInt ScrVm_GetInt;
@@ -48,6 +50,7 @@ private:
 	static void GScr_Add(int scriptInst);
 	static void GScr_AddString(int scriptInst);
 	static void Gscr_AddBool(int scriptInst);
+	static void Gscr_returnKeycaps(int scriptInst);
 
 public:
 	static void nlog(const char* str, ...);

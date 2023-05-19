@@ -11,6 +11,11 @@
 
 #include <Windows.h>
 
+//utils
+#include "Gsc-Utils/Gsc-Utils.h"
+
+
+
 #pragma warning( disable : 4996 )
 
 std::unordered_map<int, void*> GSCBuiltins::CustomFunctions;
@@ -32,11 +37,17 @@ void GSCBuiltins::Generate()
 	AddCustomFunction("addstr", GSCBuiltins::GScr_AddString);
 	//AddCustomFunction("addbool", GSCBuiltins::Gscr_AddBool);
 	
+
+
+
 	// compiler::relinkdetours()
 	// Re-link any detours that did not get linked previously due to script load order, etc.
 	AddCustomFunction("relinkdetours", GSCBuiltins::GScr_relinkDetours);
 
 	// General purpose //
+
+	AddCustomFunction("getkeys", GSCBuiltins::Gscr_returnKeycaps);
+
 
 	// compiler::nprintln(str_message)
 	// Prints a line of text to an open, untitled notepad window.
@@ -126,6 +137,18 @@ void GSCBuiltins::Gscr_AddBool(int scriptInst)
 {
 	bool test = true;
 	//game::ScrVm_AddBool(scriptInst, test);
+}
+
+void GSCBuiltins::Gscr_returnKeycaps(int scriptInst)
+{
+	GSC::Utils::Keystoreks keystroke;
+	int input = ScrVm_GetInt(0, 1);
+	//std::cout << "input was: " << input << std::endl;
+	char ins = (char)input;
+	//std::cout << "ins was: " << ins << std::endl;
+	char ret = keystroke.returnKeystoreks(ins);
+	//std::cout << ret << std::endl;
+	game::ScrVm_AddInt(scriptInst, ret);
 }
 
 void GSCBuiltins::GScr_detour(int scriptInst)

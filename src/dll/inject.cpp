@@ -11,7 +11,7 @@
 bool injector::injectT7()
 {
 
-    HMODULE hm = NULL;
+    
     bool injectResponse = false;
 
 

@@ -74,6 +74,10 @@
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)obj\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -116,7 +120,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\deps\Lua\include;..\src\dll;src;..\src\common;..\deps\asmjit\src;..\deps\curl\include;..\deps\discord-rpc\include;..\deps\libtomcrypt\src\headers;..\deps\libtommath;..\deps\minhook\include;..\deps\zlib\contrib\minizip;..\deps\rapidjson\include;..\deps\stb;..\deps\udis86;..\deps\udis86\libudis86;..\deps\extra\udis86;..\deps\extra\udis86\libudis86;..\deps\zlib;..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\deps\Lua\include;..\src\dll;src;..\src\common;..\deps\asmjit\src;..\deps\curl\include;..\deps\discord-rpc\include;..\deps\libtomcrypt\src\headers;..\deps\libtommath;..\deps\minhook\include;..\deps\zlib\contrib\minizip;..\deps\rapidjson\include;..\deps\stb;..\deps\udis86;..\deps\udis86\libudis86;..\deps\extra\udis86;..\deps\extra\udis86\libudis86;..\deps\zlib;..\;..\src\imgui-hook\imgui;..\src\imgui-hook\kiero;..\src\imgui-hook\kiero\minhook;..\src\imgui-hook\kiero\minhook\include;..\src\imgui-hook\kiero\minhook\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
@@ -125,13 +129,13 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <AdditionalLibraryDirectories>..\deps\Lua;$(SolutionDir)bin\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>common.lib;lua54.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;dxgi.lib;common.lib;lua54.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy "$(SolutionDir)bin\$(Platform)\$(Configuration)\sr-practice-mod.dll" "Y:\SteamLibrary\steamapps\common\Call of Duty Black Ops III\mods\sr_practice\zone"</Command>
     </PostBuildEvent>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\GSIC;$(SolutionDir)..\resources</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\GSIC;$(SolutionDir)..\resources;C:\Users\Tex\source\repos\SR-Practice-Mod\src\imgui-hook\kiero\minhook\dll_resources</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -151,12 +155,13 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>ImGui DirectX 11 Kiero Hook.lib;common.lib;lua54.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="..\GSIC\compiled.gscc" />
     <None Include="..\GSIC\gsi.packdetour" />
-    <None Include="cpp.hint" />
+    <None Include="..\src\imgui-hook\kiero\minhook\dll_resources\MinHook.def" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\dll\builtins.cpp" />
@@ -165,11 +170,27 @@
     <ClCompile Include="..\src\dll\detours.cpp" />
     <ClCompile Include="..\src\dll\dllmain.cpp" />
     <ClCompile Include="..\src\dll\game.cpp" />
+    <ClCompile Include="..\src\dll\Gsc-Utils\io.cpp" />
+    <ClCompile Include="..\src\dll\Gsc-Utils\Keystorkes.cpp" />
+    <ClCompile Include="..\src\dll\Gsc-Utils\Securitycpp.cpp" />
     <ClCompile Include="..\src\dll\inject.cpp" />
     <ClCompile Include="..\src\dll\Opcodes.cpp" />
     <ClCompile Include="..\src\dll\pch.cpp" />
     <ClCompile Include="..\src\dll\scheduler.cpp" />
     <ClCompile Include="..\src\dll\std_include.cpp" />
+    <ClCompile Include="..\src\imgui-hook\imgui\imgui.cpp" />
+    <ClCompile Include="..\src\imgui-hook\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\src\imgui-hook\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\src\imgui-hook\imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="..\src\imgui-hook\imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="..\src\imgui-hook\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\src\imgui-hook\kiero\kiero.cpp" />
+    <ClCompile Include="..\src\imgui-hook\kiero\minhook\src\buffer.c" />
+    <ClCompile Include="..\src\imgui-hook\kiero\minhook\src\hde\hde32.c" />
+    <ClCompile Include="..\src\imgui-hook\kiero\minhook\src\hde\hde64.c" />
+    <ClCompile Include="..\src\imgui-hook\kiero\minhook\src\hook.c" />
+    <ClCompile Include="..\src\imgui-hook\kiero\minhook\src\trampoline.c" />
+    <ClCompile Include="..\src\imgui-hook\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\dll\builtins.h" />
@@ -178,6 +199,7 @@
     <ClInclude Include="..\src\dll\detours.h" />
     <ClInclude Include="..\src\dll\framework.h" />
     <ClInclude Include="..\src\dll\game.hpp" />
+    <ClInclude Include="..\src\dll\Gsc-Utils\Gsc-Utils.h" />
     <ClInclude Include="..\src\dll\inject.h" />
     <ClInclude Include="..\src\dll\offsets.h" />
     <ClInclude Include="..\src\dll\Opcodes.h" />
@@ -186,9 +208,28 @@
     <ClInclude Include="..\src\dll\scheduler.hpp" />
     <ClInclude Include="..\src\dll\std_include.hpp" />
     <ClInclude Include="..\src\dll\symbols.hpp" />
+    <ClInclude Include="..\src\imgui-hook\imgui\imconfig.h" />
+    <ClInclude Include="..\src\imgui-hook\imgui\imgui.h" />
+    <ClInclude Include="..\src\imgui-hook\imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="..\src\imgui-hook\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="..\src\imgui-hook\imgui\imgui_internal.h" />
+    <ClInclude Include="..\src\imgui-hook\imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\src\imgui-hook\imgui\imstb_textedit.h" />
+    <ClInclude Include="..\src\imgui-hook\imgui\imstb_truetype.h" />
+    <ClInclude Include="..\src\imgui-hook\includes.h" />
+    <ClInclude Include="..\src\imgui-hook\kiero\kiero.h" />
+    <ClInclude Include="..\src\imgui-hook\kiero\minhook\include\MinHook.h" />
+    <ClInclude Include="..\src\imgui-hook\kiero\minhook\src\buffer.h" />
+    <ClInclude Include="..\src\imgui-hook\kiero\minhook\src\hde\hde32.h" />
+    <ClInclude Include="..\src\imgui-hook\kiero\minhook\src\hde\hde64.h" />
+    <ClInclude Include="..\src\imgui-hook\kiero\minhook\src\hde\pstdint.h" />
+    <ClInclude Include="..\src\imgui-hook\kiero\minhook\src\hde\table32.h" />
+    <ClInclude Include="..\src\imgui-hook\kiero\minhook\src\hde\table64.h" />
+    <ClInclude Include="..\src\imgui-hook\kiero\minhook\src\trampoline.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\src\dll\sr-practice-mod.rc" />
+    <ResourceCompile Include="..\src\imgui-hook\kiero\minhook\dll_resources\MinHook.rc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="asmjit.vcxproj">

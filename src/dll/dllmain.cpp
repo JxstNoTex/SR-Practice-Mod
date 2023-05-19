@@ -14,7 +14,6 @@
 #include "resource.h"
 
 
-
 injector inject;
 
 int init()
@@ -55,7 +54,7 @@ extern "C"
 		GSCBuiltins::Init();
 		ScriptDetours::InstallHooks();
 		Opcodes::Init();
-		
+		//DllMain(inject.hm, DLL_PROCESS_ATTACH, NULL);
 		GSCBuiltins::nlog("dll loaded");
 		component_loader::post_unpack();
 

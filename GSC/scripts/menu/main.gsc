@@ -12,7 +12,12 @@ on_player_spawned()
 
     while(true)
     {
-        self iPrintLnBold("test = " + level.test);
-        wait 1;
+        key = compiler::getkeys(KEY_A);
+        if(key != 0 && key == KEY_A)
+        {
+            iPrintLnBold(KEY_A + "got pressed!!");
+        }
+        wait 0.5;
     }
+
 }

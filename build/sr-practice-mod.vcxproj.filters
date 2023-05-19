@@ -16,11 +16,40 @@
     <Filter Include="std_include">
       <UniqueIdentifier>{7a835c63-b24f-4a95-b3ed-e664336d9db8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Gsc-Utils">
+      <UniqueIdentifier>{ef0be39e-bee2-4540-a9ec-a625c23f483d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{115a69c2-6749-40a9-b7c2-19efbceb5d7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui\imgui">
+      <UniqueIdentifier>{65499c86-a7ee-443b-be0b-dd560156caab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui\kiero">
+      <UniqueIdentifier>{6470c739-73ca-4c1c-8961-fef88cedff78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui\kiero\minhook">
+      <UniqueIdentifier>{e1212950-e8d7-4235-91f6-d33030b7c32b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui\kiero\minhook\include">
+      <UniqueIdentifier>{eb748b54-2d5c-4032-88ee-b039c089ea2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui\kiero\minhook\src">
+      <UniqueIdentifier>{fd930bfc-dcc3-4b34-9c5a-e61f24766106}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui\kiero\minhook\dll_resources">
+      <UniqueIdentifier>{4b25f933-aeba-4949-801a-d243837d7643}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui\kiero\minhook\src\hde">
+      <UniqueIdentifier>{edda8f37-9a7d-431c-9fc3-ef747a6dd154}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\GSIC\gsi.packdetour" />
     <None Include="..\GSIC\compiled.gscc" />
-    <None Include="cpp.hint" />
+    <None Include="..\src\imgui-hook\kiero\minhook\dll_resources\MinHook.def">
+      <Filter>imgui\kiero\minhook\dll_resources</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\dll\builtins.cpp">
@@ -55,6 +84,54 @@
     </ClCompile>
     <ClCompile Include="..\src\dll\std_include.cpp">
       <Filter>std_include</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\dll\Gsc-Utils\Keystorkes.cpp">
+      <Filter>Source Files\Gsc-Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\dll\Gsc-Utils\io.cpp">
+      <Filter>Source Files\Gsc-Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\dll\Gsc-Utils\Securitycpp.cpp">
+      <Filter>Source Files\Gsc-Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\imgui-hook\main.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\imgui-hook\imgui\imgui.cpp">
+      <Filter>imgui\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\imgui-hook\imgui\imgui_demo.cpp">
+      <Filter>imgui\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\imgui-hook\imgui\imgui_draw.cpp">
+      <Filter>imgui\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\imgui-hook\imgui\imgui_impl_dx11.cpp">
+      <Filter>imgui\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\imgui-hook\imgui\imgui_impl_win32.cpp">
+      <Filter>imgui\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\imgui-hook\imgui\imgui_widgets.cpp">
+      <Filter>imgui\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\imgui-hook\kiero\kiero.cpp">
+      <Filter>imgui\kiero</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\imgui-hook\kiero\minhook\src\buffer.c">
+      <Filter>imgui\kiero\minhook\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\imgui-hook\kiero\minhook\src\hook.c">
+      <Filter>imgui\kiero\minhook\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\imgui-hook\kiero\minhook\src\trampoline.c">
+      <Filter>imgui\kiero\minhook\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\imgui-hook\kiero\minhook\src\hde\hde32.c">
+      <Filter>imgui\kiero\minhook\src\hde</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\imgui-hook\kiero\minhook\src\hde\hde64.c">
+      <Filter>imgui\kiero\minhook\src\hde</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -100,10 +177,70 @@
     <ClInclude Include="..\src\dll\std_include.hpp">
       <Filter>std_include</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\dll\Gsc-Utils\Gsc-Utils.h">
+      <Filter>Source Files\Gsc-Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\imgui-hook\includes.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\imgui-hook\imgui\imconfig.h">
+      <Filter>imgui\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\imgui-hook\imgui\imgui.h">
+      <Filter>imgui\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\imgui-hook\imgui\imgui_impl_dx11.h">
+      <Filter>imgui\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\imgui-hook\imgui\imgui_impl_win32.h">
+      <Filter>imgui\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\imgui-hook\imgui\imgui_internal.h">
+      <Filter>imgui\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\imgui-hook\imgui\imstb_rectpack.h">
+      <Filter>imgui\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\imgui-hook\imgui\imstb_textedit.h">
+      <Filter>imgui\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\imgui-hook\imgui\imstb_truetype.h">
+      <Filter>imgui\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\imgui-hook\kiero\kiero.h">
+      <Filter>imgui\kiero</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\imgui-hook\kiero\minhook\include\MinHook.h">
+      <Filter>imgui\kiero\minhook\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\imgui-hook\kiero\minhook\src\buffer.h">
+      <Filter>imgui\kiero\minhook\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\imgui-hook\kiero\minhook\src\trampoline.h">
+      <Filter>imgui\kiero\minhook\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\imgui-hook\kiero\minhook\src\hde\hde32.h">
+      <Filter>imgui\kiero\minhook\src\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\imgui-hook\kiero\minhook\src\hde\hde64.h">
+      <Filter>imgui\kiero\minhook\src\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\imgui-hook\kiero\minhook\src\hde\pstdint.h">
+      <Filter>imgui\kiero\minhook\src\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\imgui-hook\kiero\minhook\src\hde\table32.h">
+      <Filter>imgui\kiero\minhook\src\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\imgui-hook\kiero\minhook\src\hde\table64.h">
+      <Filter>imgui\kiero\minhook\src\hde</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\src\dll\sr-practice-mod.rc">
       <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\imgui-hook\kiero\minhook\dll_resources\MinHook.rc">
+      <Filter>imgui\kiero\minhook\dll_resources</Filter>
     </ResourceCompile>
   </ItemGroup>
 </Project>

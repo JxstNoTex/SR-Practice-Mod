@@ -22,4 +22,3 @@
 #define OFF_ScrVm_GetFunc REBASE(0x12EB730)
 #define PTR_sSessionModeState REBASE(0x168ED7F4)
 #define GSCR_FASTEXIT REBASE(0x2C53903)
-#define OFF_ScrVm_AddInt REBASE(0x1412E9870)
