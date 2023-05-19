@@ -1,6 +1,5 @@
 #include <std_include.hpp>
 #include "component_loader.hpp"
-//#include "resource.hpp"
 
 #include "game.hpp"
 #include "resource.h"

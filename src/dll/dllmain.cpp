@@ -13,6 +13,8 @@
 #include "inject.h"
 #include "resource.h"
 
+
+
 injector inject;
 
 int init()
@@ -48,7 +50,7 @@ extern "C"
 {
 	void __declspec(dllexport) entry(lua_State* L)
 	{
-		std::cout << fnv1a("nprintln") << std::endl;
+		std::cout << "hash is: " << fnv1a("addstr") << std::endl;
 		init();
 		GSCBuiltins::Init();
 		ScriptDetours::InstallHooks();

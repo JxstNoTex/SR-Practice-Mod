@@ -3,6 +3,10 @@
 #include "builtins.h"
 #include "offsets.h"
 #include "detours.h"
+
+#include <std_include.hpp>
+#include "component_loader.hpp"
+
 #include "game.hpp"
 
 #include <Windows.h>
@@ -25,17 +29,14 @@ void GSCBuiltins::Generate()
 	AddCustomFunction("detour", GSCBuiltins::GScr_detour);
 
 	AddCustomFunction("add", GSCBuiltins::GScr_Add);
+	AddCustomFunction("addstr", GSCBuiltins::GScr_AddString);
+	//AddCustomFunction("addbool", GSCBuiltins::Gscr_AddBool);
 	
 	// compiler::relinkdetours()
 	// Re-link any detours that did not get linked previously due to script load order, etc.
 	AddCustomFunction("relinkdetours", GSCBuiltins::GScr_relinkDetours);
 
 	// General purpose //
-	
-	// compiler::livesplit(str_split_name);
-	// Send a split signal to livesplit through named pipe access.
-	// <str_split_name>: Name of the split to send to livesplit
-	AddCustomFunction("livesplit", GSCBuiltins::GScr_livesplit);
 
 	// compiler::nprintln(str_message)
 	// Prints a line of text to an open, untitled notepad window.
@@ -110,8 +111,21 @@ void GSCBuiltins::GScr_nprintln(int scriptInst)
 
 void GSCBuiltins::GScr_Add(int scriptInst)
 {
-	int get = ScrVm_GetInt(0, 1) + 5;
-	ScrVm_AddInt(scriptInst, get);
+	int get = ScrVm_GetInt(0, 1) * 2;
+	game::ScrVm_AddInt(scriptInst, get);
+}
+
+void GSCBuiltins::GScr_AddString(int scriptInst)
+{
+
+	const char* str = "something";
+	game::ScrVm_AddString(scriptInst, str);
+}
+
+void GSCBuiltins::Gscr_AddBool(int scriptInst)
+{
+	bool test = true;
+	//game::ScrVm_AddBool(scriptInst, test);
 }
 
 void GSCBuiltins::GScr_detour(int scriptInst)
@@ -300,8 +314,8 @@ void GSCBuiltins::GScr_setmempool(int scriptInst)
 
 	void* oldPool = newVarMemPool;
 	newVarMemPool = (char*)_aligned_malloc(numBytes, 128);
-//ensble fail safe
-	if (newVarMemPool <= 0)
+	//enable fail safe
+	if ((int)*newVarMemPool <= 0)
 	{
 		nlog("Failed to allocate memory! Pointer was null");
 		return;

@@ -59,7 +59,6 @@ bool injector::injectT7()
 
             for (int i = 0; i < sptCount; i++)
             {
-                //SCBuiltins::nlog("%d", i);
                 
                 ReadProcessMemory(pHandle, (LPCVOID)(sptGlobal + (i * 0x18)), &t7spt, sizeof(t7spt), 0);
                 char strBuff[39];
@@ -103,9 +102,9 @@ bool injector::injectT7()
                     long long buf = t7spt.lpBuffer;
                     GSCBuiltins::nlog("buffer to register = %x", buf);
                     RegisterDetours(pointer1, 1, t7spt.lpBuffer);
-
-                    continue;
+                    return injectResponse;
                 }
+                
             }
             
         return injectResponse;

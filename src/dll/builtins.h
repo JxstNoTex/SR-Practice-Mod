@@ -16,7 +16,6 @@ typedef INT64(__fastcall* tScrVm_GetInt)(unsigned int inst, unsigned int index);
 typedef char* (__fastcall* tScrVm_GetString)(unsigned int inst, unsigned int index);
 typedef INT32(__fastcall* tScrVar_AllocVariableInternal)(unsigned int inst, unsigned int nameType, __int64 a3, unsigned int a4);
 typedef INT64(__fastcall* tScrVm_GetFunc)(unsigned int inst, unsigned int index);
-typedef INT64(__fastcall* tScrVm_AddInt)(unsigned int inst, unsigned int index);
 
 class GSCBuiltins
 {
@@ -45,7 +44,10 @@ private:
 	static void GScr_catch_exit(int scriptInst);
 	static void GScr_abort(int scriptInst);
 	static void GScr_enableonlinematch(int scriptInst);
+
 	static void GScr_Add(int scriptInst);
+	static void GScr_AddString(int scriptInst);
+	static void Gscr_AddBool(int scriptInst);
 
 public:
 	static void nlog(const char* str, ...);

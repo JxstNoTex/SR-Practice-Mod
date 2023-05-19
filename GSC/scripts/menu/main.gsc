@@ -12,7 +12,6 @@ on_player_spawned()
 
     while(true)
     {
-        self enableInvulnerability();
         self iPrintLnBold("test = " + level.test);
         wait 1;
     }
