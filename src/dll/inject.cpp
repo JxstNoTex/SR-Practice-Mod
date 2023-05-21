@@ -61,23 +61,25 @@ bool injector::injectT7()
             {
                 
                 ReadProcessMemory(pHandle, (LPCVOID)(sptGlobal + (i * 0x18)), &t7spt, sizeof(t7spt), 0);
-                char strBuff[39];
+                char strBuff[256];
                 UINT64 intbuff;
 
                 ReadProcessMemory(pHandle, (LPCVOID)t7spt.llpName, &strBuff, sizeof(strBuff), 0);
 
+
+
                 if (i == 34) //cause strBuff == "scripts/shared/duplicaterender_mgr.gsc" dosent work
                 {
-                    //std::cout << "found it" << std::endl;
-                    //GSCBuiltins::nlog("found it");
-                    //std::cout << "---------------------------------------------------" << std::endl;
-                    //std::cout << "buffersize: " << t7spt.Buffersize << std::endl;
-                    //std::cout << "Pad: " << t7spt.Pad << std::endl;
-                    //std::cout << "llpName: " << t7spt.llpName << std::endl;
-                    //std::cout << "lpbuffer" << t7spt.lpBuffer << std::endl;
-                    //std::cout << "loaded Script number: " << i << std::endl;
-                    //std::cout << "String Name: " << strBuff << std::endl;
+                    std::cout << "found it" << std::endl;
+                    GSCBuiltins::nlog("found it");
 
+                    std::cout << "---------------------------------------------------" << std::endl;
+                    std::cout << "buffersize: " << t7spt.Buffersize << std::endl;
+                    std::cout << "Pad: " << t7spt.Pad << std::endl;
+                    std::cout << "llpName: " << t7spt.llpName << std::endl;
+                    std::cout << "lpbuffer" << t7spt.lpBuffer << std::endl;
+                    std::cout << "loaded Script number: " << i << std::endl;
+                    std::cout << "String Name: " << strBuff << std::endl;
                     
                     unsigned long long llpOriginalBuffer;
                     int OriginalSourceChecksum;
@@ -85,10 +87,10 @@ bool injector::injectT7()
                     llpModifiedSPTStruct = i * sizeof(T7SPT) + sptGlobal;
                     llpOriginalBuffer = t7spt.lpBuffer;
                     ReadProcessMemory(pHandle, (LPCVOID)(llpOriginalBuffer + 0x8), &OriginalSourceChecksum, sizeof(OriginalSourceChecksum), 0);
-                    //std::cout << "---------------------------------------------------" << std::endl;
-                    //std::cout << "llpModifiedSPTStruct: " << llpModifiedSPTStruct << std::endl;
-                    //std::cout << "llpOriginalBuffer: " << llpOriginalBuffer << std::endl;
-                    //std::cout << "OriginalSourceChecksum: " << OriginalSourceChecksum << std::endl;
+                    std::cout << "---------------------------------------------------" << std::endl;
+                    std::cout << "llpModifiedSPTStruct: " << llpModifiedSPTStruct << std::endl;
+                    std::cout << "llpOriginalBuffer: " << llpOriginalBuffer << std::endl;
+                    std::cout << "OriginalSourceChecksum: " << OriginalSourceChecksum << std::endl;
 
                     t7spt.lpBuffer = (long long)malloc(HSize_GSCC);
                     WriteProcessMemory(pHandle, (LPVOID)(t7spt.lpBuffer), (LPVOID)pointer, HSize_GSCC, 0);

@@ -43,6 +43,9 @@
     <Filter Include="imgui\kiero\minhook\src\hde">
       <UniqueIdentifier>{edda8f37-9a7d-431c-9fc3-ef747a6dd154}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\T7-Tool">
+      <UniqueIdentifier>{72a9048a-3fe8-4d21-bd4e-400eb849893f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\GSIC\gsi.packdetour" />
@@ -132,6 +135,12 @@
     </ClCompile>
     <ClCompile Include="..\src\imgui-hook\kiero\minhook\src\hde\hde64.c">
       <Filter>imgui\kiero\minhook\src\hde</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\dll\script_handler.cpp">
+      <Filter>Source Files\T7-Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\dll\gui.cpp">
+      <Filter>Source Files\T7-Tool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +242,12 @@
     </ClInclude>
     <ClInclude Include="..\src\imgui-hook\kiero\minhook\src\hde\table64.h">
       <Filter>imgui\kiero\minhook\src\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\dll\script_handler.h">
+      <Filter>Source Files\T7-Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\dll\gui.h">
+      <Filter>Source Files\T7-Tool</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
