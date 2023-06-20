@@ -27,7 +27,7 @@ function powerup_special_drop_override(){
 
     switch(level.script){
         case "zm_factory":
-                level.powerup_special_drop_override = ::factory_custom_powerup_special_drop_override;
+            level.powerup_special_drop_override = ::factory_custom_powerup_special_drop_override;
         break;
 
     }

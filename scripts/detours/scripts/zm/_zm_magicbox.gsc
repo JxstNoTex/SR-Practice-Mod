@@ -1,4 +1,3 @@
-//#ifdef BOX_DETOUR
 detour zm_magicbox<scripts\zm\_zm_magicbox.gsc>::treasure_chest_chooseweightedrandomweapon(player)
 {
 	if(!isDefined(level.detour_functions["zm_pap_util::get_triggers"])) level.detour_functions["zm_pap_util::get_triggers"] = @zm_pap_util<scripts\zm\_zm_pack_a_punch_util.gsc>::get_triggers;
@@ -31,5 +30,3 @@ detour zm_magicbox<scripts\zm\_zm_magicbox.gsc>::treasure_chest_chooseweightedra
 
 	return keys[0];
 }
-
-//#endif

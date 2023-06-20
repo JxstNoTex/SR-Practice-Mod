@@ -12,8 +12,21 @@ init()
 
     level.tick = 0.05;
     if(!isdefined(level.detour_functions)) level.detour_functions = [];
-    level.debug = 1;
+    level.debug = true;
 
+    if(level.debug){
+
+        level.debug_perks_location = false;
+        level.debug_is_megas = true;
+        level.debug_bgb_pack = true;
+
+    }else{
+
+        level.debug_perks_location = false;
+        level.debug_is_megas = false;
+        level.debug_bgb_pack = false;
+
+    }
 
     //This creates the possible gamemodes
     if(!isDefined(world.practice)) level create_sr_modes();
@@ -56,43 +69,24 @@ init()
     //Patches level.zm_custom_spawn_location_selection
     level thread zm_custom_spawn_location_selection();
 
-    /*while(!isDefined(level.randomize_perk_machine_location)) wait GAMETICK;
-    level.randomize_perk_machine_location = 0;*/
+    //Patches only things for practice mode
+    if(world.practice){
+
+        //Changes perk locations
+        if(level.script == "zm_factory" || level.script == "zm_zod") level thread custom_perk_locations();
+
+        //Patches box start position
+        level thread random_pandora_box_start();
+
+        //Patches dog rounds
+        level thread set_custom_special_round();
+
+        //Patches GBG packs and order
+        level thread custom_bgb_pack();
+
+    }
 
 }
-
-/*_main_(){
-
-    switch(level.script){
-        case "zm_castle":
-        BOX_DETOUR = true;
-        break;
-
-        default:
-        break;
-    }
-}*/
-
-/*_main_()
-{
-    
-    map_name = level.script;
-    switch(map_name)
-      {
-        case "zm_zod":
-              //EXEXC_ZOD_DETOUR = true
-              //compiler::relinkdetour();
-              break;
-        case "zm_castle":
-            //BOX_DETOUR;
-            compiler::relinkdetour();
-            break;
-        default:
-            break;
-    }
-}*/
-
-
 
 
 on_player_connect()
@@ -124,12 +118,12 @@ on_player_spawned()
         self.score = 777770;
         self notify("stop_player_out_of_playable_area_monitor");
 
-        self.bgb_pack = [];
-        self.bgb_pack_randomized = [];
-        //ArrayInsert(self.bgb_pack, "zm_bgb_round_robbin", self.bgb_pack.size);
-        //ArrayInsert(self.bgb_pack_randomized, "zm_bgb_perkaholic", 0);
-        ArrayInsert(self.bgb_pack, "zm_bgb_reign_drops", 0);
-        ArrayInsert(self.bgb_pack_randomized, "zm_bgb_reign_drops", 0);
+        /*self.bgb_pack = [];
+            self.bgb_pack_randomized = [];
+            ArrayInsert(self.bgb_pack, "zm_bgb_round_robbin", self.bgb_pack.size);
+        ArrayInsert(self.bgb_pack_randomized, "zm_bgb_round_robbin", 0);*/
+        //ArrayInsert(self.bgb_pack, "zm_bgb_reign_drops", 0);
+        //ArrayInsert(self.bgb_pack_randomized, "zm_bgb_reign_drops", 0);
 
         self iPrintLnBold("Debuger mode activated");
     }

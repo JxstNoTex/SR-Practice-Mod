@@ -93,14 +93,14 @@ function factory_perk_location(){
         ArrayInsert(patched_machines, speed_machine, patched_machines.size);
         ArrayInsert(patched_machines, mule_machine, patched_machines.size);
         ArrayInsert(patched_machines, jugg_machine, patched_machines.size);
-        if(level.debug) level thread debug_message(level.script+" "+world.sr_mode);
+        if(level.debug_perks_location) level thread debug_message(level.script+" "+world.sr_mode);
     }else{
         ArrayInsert(patched_machines, doubletap_machine, patched_machines.size);
         ArrayInsert(patched_machines, speed_machine, patched_machines.size);
         ArrayInsert(patched_machines, jugg_machine, patched_machines.size);
         ArrayInsert(patched_machines, mule_machine, patched_machines.size);
         ArrayInsert(patched_machines, quick_machine, patched_machines.size);
-        if(level.debug) level thread debug_message(level.script+" "+world.sr_mode);
+        if(level.debug_perks_location) level thread debug_message(level.script+" "+world.sr_mode);
     }
 
 
