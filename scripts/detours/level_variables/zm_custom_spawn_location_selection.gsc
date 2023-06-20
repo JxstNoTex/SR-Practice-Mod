@@ -85,19 +85,19 @@ function zombie_spawn_search(script_string){
     wanted_spawns.zone = undefined;
 
         foreach(string, zone in level.zones){
-        //level.players[0] iPrintLnBold(zone);// este no va
-            //level.players[0] iPrintLnBold(string);// nombre de la zona
-            //level.players[0] iPrintLnBold("volumes "+level.zones[string].volumes.size); //para ver cuantos volumenes hay
+        //level thread debug_message(zone);// este no va
+            //level thread debug_message(string);// nombre de la zona
+            //level thread debug_message("volumes "+level.zones[string].volumes.size); //para ver cuantos volumenes hay
         // Un solo volumen ya tiene la info de los respawns de todos, no hace falta ir uno por uno
         if(level.zones[string].volumes.size!=0){
             foreach(type, loc in level.zones[string].a_loc_types){
-                //level.players[0] iPrintLnBold("target "+level.zones[string].volumes[0].target);
-                //level.players[0] iPrintLnBold("type "+type+" size "+level.zones[string].a_loc_types[type].size);//el type de spawn "zombie_location" "dog_location"
+                //level thread debug_message("target "+level.zones[string].volumes[0].target);
+                //level thread debug_message("type "+type+" size "+level.zones[string].a_loc_types[type].size);//el type de spawn "zombie_location" "dog_location"
                 if(type != "zombie_location")continue; // I only get zombie spawns
                 foreach(spot in level.zones[string].a_loc_types[type]){
 
                     if(spot.script_string == script_string){
-                        if(level.debug)level.players[0] iPrintLnBold(script_string+" found on "+string);
+                        if(level.debug)level thread debug_message(script_string+" found on "+string);
                         spot.zone = string;
                         ArrayInsert(wanted_spawns, spot, wanted_spawns.size);
                         if(!isDefined(wanted_spawns.zone)) wanted_spawns.zone = string;
@@ -112,20 +112,20 @@ function zombie_spawn_search(script_string){
 			            case "spawn_location":
 			            case "spawner_location":
                     */
-                    /*level.players[0] iPrintLnBold(spot.script_string+" string");  si tiene
-                        //level.players[0] iPrintLnBold(spot.script_noteworthy); // no tiene
-                        //level.players[0] iPrintLnBold(spot.script_float+" float"); // no tiene
-                        level.players[0] iPrintLnBold(spot.str_tag+" tag"); // no tiene
+                    /*level thread debug_message(spot.script_string+" string");  si tiene
+                        //level thread debug_message(spot.script_noteworthy); // no tiene
+                        //level thread debug_message(spot.script_float+" float"); // no tiene
+                        level thread debug_message(spot.str_tag+" tag"); // no tiene
                     */
                 }
             }
         }
     }
 
-    if(level.debug) level.players[0] iPrintLnBold(wanted_spawns.size);
+    if(level.debug) level thread debug_message(wanted_spawns.size);
 
     if(wanted_spawns.size>0) return wanted_spawns;
-    else level.players[0] iPrintLnBold("Error, no spot found :(");
+    else level thread debug_message("Error, no spot found :(");
 
 }
 
@@ -148,8 +148,8 @@ function zombie_factory_spawns(){
 function factory_zm_custom_spawn_location_selection(a_spots){
 
     /*if(level.debug){
-        level.players[0] iPrintLnBold("Total zombies "+level.zombie_total);
-        level.players[0] iPrintLnBold("Respawn zombies "+level.zombie_respawns);
+        level thread debug_message("Total zombies "+level.zombie_total);
+        level thread debug_message("Respawn zombies "+level.zombie_respawns);
     }*/
 
 
@@ -180,29 +180,29 @@ function factory_zm_custom_spawn_location_selection(a_spots){
          //Sets the first 2 zombies to spawn on the right Pap window
         if(world.sr_mode == "easter_eggs" || world.sr_mode == "community"){
             if(level.round_number == 1 && level.zombie_total >= [[ level.detour_functions["zm::get_zombie_count_for_round"] ]](level.round_number, level.players.size) -2 && IsInArray(a_candidates, level.ee_spawn[0]) ){
-                if(level.debug) level.players[0] iPrintLnBold("Patching REspawn");
+                if(level.debug) level thread debug_message("Patching REspawn");
                 patched_spawn = level.ee_spawn[randomInt(level.ee_spawn.size)];
                 foreach(spot in a_candidates){
                     if(spot == patched_spawn){
-                        if(level.debug) level.players[0] iPrintLnBold("Spawn found!");
+                        if(level.debug) level thread debug_message("Spawn found!");
                         return spot;
                     }
                 }
-                level.players[0] iPrintLnBold("Error, havent found the correct spawn");
+                level thread debug_message("Error, havent found the correct spawn");
             }
         }
         //Sets the zombies to further right pap window in case they can spawn outside east tp building
         else if(world.sr_mode == "rounds"){
             if( IsInArray(a_candidates, level.outside_east_a[0]) && IsInArray(a_candidates, level.outside_south_spawn[0]) ){
-                if(level.debug) level.players[0] iPrintLnBold("Patching REspawn");
+                if(level.debug) level thread debug_message("Patching REspawn");
                 patched_spawn = level.outside_east_a[randomInt(level.outside_east_a.size)];
                 foreach(spot in a_candidates){
                     if(spot == patched_spawn){
-                        if(level.debug) level.players[0] iPrintLnBold("Spawn found!");
+                        if(level.debug) level thread debug_message("Spawn found!");
                         return spot;
                     }
                 }
-                level.players[0] iPrintLnBold("Error, havent found the correct spawn");
+                level thread debug_message("Error, havent found the correct spawn");
             }
         }
     }
@@ -218,29 +218,29 @@ function factory_zm_custom_spawn_location_selection(a_spots){
          //Sets the first 2 zombies to spawn on the right Pap window
         if(world.sr_mode == "easter_eggs" || world.sr_mode == "community"){
             if(level.round_number == 1 && level.zombie_total >= [[ level.detour_functions["zm::get_zombie_count_for_round"] ]](level.round_number, level.players.size) -2 && IsInArray(a_candidates, level.ee_spawn[0]) ){
-                if(level.debug) level.players[0] iPrintLnBold("Patching REspawn");
+                if(level.debug) level thread debug_message("Patching REspawn");
                 patched_spawn = level.ee_spawn[randomInt(level.ee_spawn.size)];
                 foreach(spot in a_candidates){
                     if(spot == patched_spawn){
-                        if(level.debug) level.players[0] iPrintLnBold("Spawn found!");
+                        if(level.debug) level thread debug_message("Spawn found!");
                         return spot;
                     }
                 }
-                level.players[0] iPrintLnBold("Error, havent found the correct spawn");
+                level thread debug_message("Error, havent found the correct spawn");
             }
         }
         //Sets the zombies to further right pap window in case they can spawn outside east tp building
         else if(world.sr_mode == "rounds"){
             if( IsInArray(a_candidates, level.outside_east_a[0]) && IsInArray(a_candidates, level.outside_south_spawn[0]) ){
-                if(level.debug) level.players[0] iPrintLnBold("Patching REspawn");
+                if(level.debug) level thread debug_message("Patching REspawn");
                 patched_spawn = level.outside_east_a[randomInt(level.outside_east_a.size)];
                 foreach(spot in a_candidates){
                     if(spot == patched_spawn){
-                        if(level.debug) level.players[0] iPrintLnBold("Spawn found!");
+                        if(level.debug) level thread debug_message("Spawn found!");
                         return spot;
                     }
                 }
-                level.players[0] iPrintLnBold("Error, havent found the correct spawn");
+                level thread debug_message("Error, havent found the correct spawn");
             }
         }
     }
@@ -258,29 +258,29 @@ function factory_zm_custom_spawn_location_selection(a_spots){
          //Sets the first 2 zombies to spawn on the right Pap window
         if(world.sr_mode == "easter_eggs" || world.sr_mode == "community"){
             if(level.round_number == 1 && level.zombie_total >= [[ level.detour_functions["zm::get_zombie_count_for_round"] ]](level.round_number, level.players.size) -2 && IsInArray(a_spots, level.ee_spawn[0]) ){
-                if(level.debug) level.players[0] iPrintLnBold("Patching Spawn");
+                if(level.debug) level thread debug_message("Patching Spawn");
                 patched_spawn = level.ee_spawn[randomInt(level.ee_spawn.size)];
                 foreach(spot in a_spots){
                     if(spot == patched_spawn){
-                        if(level.debug) level.players[0] iPrintLnBold("Spawn found!");
+                        if(level.debug) level thread debug_message("Spawn found!");
                         return spot;
                     }
                 }
-                level.players[0] iPrintLnBold("Error, havent found the correct spawn");
+                level thread debug_message("Error, havent found the correct spawn");
             }
         }
         //Sets the zombies to further right pap window in case they can spawn outside east tp building
         else if(world.sr_mode == "rounds"){
             if( IsInArray(a_spots, level.outside_east_a[0]) && IsInArray(a_spots, level.outside_south_spawn[0]) ){
-                if(level.debug) level.players[0] iPrintLnBold("Patching Spawner");
+                if(level.debug) level thread debug_message("Patching Spawner");
                 patched_spawn = level.outside_east_a[randomInt(level.outside_east_a.size)];
                 foreach(spot in a_spots){
                     if(spot == patched_spawn){
-                        if(level.debug) level.players[0] iPrintLnBold("Spawn found!");
+                        if(level.debug) level thread debug_message("Spawn found!");
                         return spot;
                     }
                 }
-                level.players[0] iPrintLnBold("Error, havent found the correct spawn");
+                level thread debug_message("Error, havent found the correct spawn");
             }
         }
     }

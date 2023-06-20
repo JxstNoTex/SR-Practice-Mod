@@ -55,14 +55,14 @@ detour zm_weapons<scripts\zm\_zm_weapons.gsc>::give_build_kit_weapon(weapon)
     if(weapon == getweapon("tesla_gun") || weapon == getweapon("tesla_gun_upgraded")){
         weapon_options = self getbuildkitweaponoptions(weapon, level.tesla_camos[weapon.name][randomInt(level.tesla_camos[weapon.name].size)]);
         if(level.debug){
-            level.players[0] iPrintLnBold("Camo for "+weapon.name+" is changed");
-            level.players[0] iPrintLnBold("tam is "+level.tesla_camos[weapon.name].size);
+            level thread debug_message("Camo for "+weapon.name+" is changed");
+            level thread debug_message("tam is "+level.tesla_camos[weapon.name].size);
         }
     }else if(weapon == (getweapon("pistol_revolver38_upgraded"))){
         weapon_options = self getbuildkitweaponoptions(weapon, level.revolver_upgraded_camos[randomInt(level.revolver_upgraded_camos.size)]);
         if(level.debug){
-            level.players[0] iPrintLnBold("Camo for "+weapon.name+" is changed");
-            level.players[0] iPrintLnBold("tam is "+level.revolver_upgraded_camos.size);
+            level thread debug_message("Camo for "+weapon.name+" is changed");
+            level thread debug_message("tam is "+level.revolver_upgraded_camos.size);
         }
     }
     #endregion

@@ -2,17 +2,17 @@ function precache_strings(){
 
     level endon("end_game");
 
-//level.players[0] iPrintLnBold("starting precache");
+//level thread debug_message("starting precache");
     str_trig = Spawn( "trigger_radius", (0, 0, 0), 0, 16, 16 );
     str_trig SetInvisibleToAll();
 
     level waittill( "all_players_connected" );
 
-    //level.players[0] iPrintLnBold("all players connected");
+    //level thread debug_message("all players connected");
     precache_base_perks(str_trig);
     precache_general(str_trig);
 
-//level.players[0] iPrintLnBold("base precache done");
+//level thread debug_message("base precache done");
 
     switch(level.script){
 
@@ -338,7 +338,7 @@ function precache_strings(){
 
     str_trig delete();
 
-    //level.players[0] iPrintLnBold("precache finished");
+    //level thread debug_message("precache finished");
 
 }
 

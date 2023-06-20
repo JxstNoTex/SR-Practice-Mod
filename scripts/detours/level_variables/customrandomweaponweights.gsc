@@ -84,21 +84,21 @@ function customrandomweaponweights(){
 function can_give_ww_weap(weapon){
 
     if(!isDefined(weapon)){
-        if(level.debug) level.players[0] iPrintLnBold("Weapon to check not defined");
+        if(level.debug) level thread debug_message("Weapon to check not defined");
         return false;
     }
     foreach(player in level.players){
         if(player hasWeapon(weapon)){
-            if(level.debug) level.players[0] iPrintLnBold(player.name+" has already the weapon "+weapon.name);
+            if(level.debug) level thread debug_message(player.name+" has already the weapon "+weapon.name);
             return false;
         }
     }
 
     if(isDefined(level.zombie_weapons[weapon].is_in_box) && level.zombie_weapons[weapon].is_in_box){
-        if(level.debug) level.players[0] iPrintLnBold("No one has "+weapon.name+" and its available on the box");
+        if(level.debug) level thread debug_message("No one has "+weapon.name+" and its available on the box");
         return true;
     }else{
-        if(level.debug) level.players[0] iPrintLnBold("No one has "+weapon.name+" BUT its not on the box");
+        if(level.debug) level thread debug_message("No one has "+weapon.name+" BUT its not on the box");
         return false;
     }
 
@@ -112,10 +112,10 @@ function zod_customrandomweaponweights(keys){
     if(world.practice){
         if(can_give_ww_weap(getweapon(level.idgun[0].str_wpnname))){
             ArrayInsert(keys, getweapon(level.idgun[0].str_wpnname), 0);
-            if(level.debug)level.players[0] iPrintLnBold(level.idgun[0].str_wpnname +" is next weapon");
+            if(level.debug)level thread debug_message(level.idgun[0].str_wpnname +" is next weapon");
             return keys;
         }else if(!self [[ level.detour_functions["zm_weapons::has_weapon_or_upgrade"] ]](getweapon("octobomb"))){
-            if(level.debug) level.players[0] iPrintLnBold(self.name + " doesnt have arnies");
+            if(level.debug) level thread debug_message(self.name + " doesnt have arnies");
             if(level.zombie_weapons[level.w_octobomb].is_in_box){
                 ArrayInsert(keys, level.w_octobomb, 0);
             }else{
@@ -123,11 +123,11 @@ function zod_customrandomweaponweights(keys){
             }
             return keys;
         }else if(!self [[ level.detour_functions["zm_weapons::has_weapon_or_upgrade"] ]](getweapon("lmg_cqb"))){
-            if(level.debug) level.players[0] iPrintLnBold(self.name + " doesnt have dingo");
+            if(level.debug) level thread debug_message(self.name + " doesnt have dingo");
             ArrayInsert(keys, getweapon("lmg_cqb"), 0);
             return keys;
         }else if(!self [[ level.detour_functions["zm_weapons::has_weapon_or_upgrade"] ]](getweapon("sniper_fastsemi"))){
-            if(level.debug) level.players[0] iPrintLnBold(self.name + " doesnt have drakon");
+            if(level.debug) level thread debug_message(self.name + " doesnt have drakon");
             ArrayInsert(keys, getweapon("sniper_fastsemi"), 0);
             return keys;
         }
@@ -158,18 +158,18 @@ function factory_customrandomweaponweights(keys){
     if(world.practice){
         if(can_give_ww_weap(level.weaponzmteslagun)){
             ArrayInsert(keys, level.weaponzmteslagun, 0);
-            if(level.debug)level.players[0] iPrintLnBold(level.weaponzmteslagun.name +" is next weapon");
+            if(level.debug)level thread debug_message(level.weaponzmteslagun.name +" is next weapon");
             return keys;
         }else if(!self [[ level.detour_functions["zm_weapons::has_weapon_or_upgrade"] ]](level.weaponzmcymbalmonkey)){
-            if(level.debug) level.players[0] iPrintLnBold(self.name + " doesnt have monkeys");
+            if(level.debug) level thread debug_message(self.name + " doesnt have monkeys");
             ArrayInsert(keys, level.weaponzmcymbalmonkey, 0);
             return keys;
         }else if(!self [[ level.detour_functions["zm_weapons::has_weapon_or_upgrade"] ]](getweapon("lmg_cqb"))){
-            if(level.debug) level.players[0] iPrintLnBold(self.name + " doesnt have dingo");
+            if(level.debug) level thread debug_message(self.name + " doesnt have dingo");
             ArrayInsert(keys, getweapon("lmg_cqb"), 0);
             return keys;
         }else if(!self [[ level.detour_functions["zm_weapons::has_weapon_or_upgrade"] ]](getweapon("sniper_fastsemi"))){
-            if(level.debug) level.players[0] iPrintLnBold(self.name + " doesnt have drakon");
+            if(level.debug) level thread debug_message(self.name + " doesnt have drakon");
             ArrayInsert(keys, getweapon("sniper_fastsemi"), 0);
             return keys;
         }

@@ -23,7 +23,7 @@ detour zm_magicbox<scripts\zm\_zm_magicbox.gsc>::treasure_chest_chooseweightedra
 	{
 		if( [[ level.detour_functions["zm_magicbox::treasure_chest_canplayerreceiveweapon"] ]](player, keys[i], pap_triggers) )
 		{
-			if(level.debug) level.players[0] iPrintLnBold("Selected gun is "+keys[i].name);
+			if(level.debug) level thread debug_message("Selected gun is "+keys[i].name);
 			return keys[i];
 		}
 	}

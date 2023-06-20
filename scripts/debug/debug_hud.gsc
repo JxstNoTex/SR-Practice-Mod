@@ -185,14 +185,14 @@ function debug_zombie_spawns(){
     level.strings = [];
 
     foreach(string, zone in level.zones){
-        //level.players[0] iPrintLnBold(zone);// este no va
-        //level.players[0] iPrintLnBold(string);// nombre de la zona
-        //level.players[0] iPrintLnBold("volumes "+level.zones[string].volumes.size); //para ver cuantos volumenes hay
+        //level thread debug_message(zone);// este no va
+        //level thread debug_message(string);// nombre de la zona
+        //level thread debug_message("volumes "+level.zones[string].volumes.size); //para ver cuantos volumenes hay
         // Un solo volumen ya tiene la info de los respawns de todos, no hace falta ir uno por uno
         if(level.zones[string].volumes.size!=0){
             foreach(type, loc in level.zones[string].a_loc_types){
-                //level.players[0] iPrintLnBold("target "+level.zones[string].volumes[0].target);
-                //level.players[0] iPrintLnBold("type "+type+" size "+level.zones[string].a_loc_types[type].size);//el type de spawn "zombie_location" "dog_location"
+                //level thread debug_message("target "+level.zones[string].volumes[0].target);
+                //level thread debug_message("type "+type+" size "+level.zones[string].a_loc_types[type].size);//el type de spawn "zombie_location" "dog_location"
                 if(type != "zombie_location")continue; // I only get zombie spawns
                 foreach(spot in level.zones[string].a_loc_types[type]){
 
@@ -205,10 +205,10 @@ function debug_zombie_spawns(){
 			            case "spawn_location":
 			            case "spawner_location":
                     */
-                    /*level.players[0] iPrintLnBold(spot.script_string+" string");  si tiene
-                        //level.players[0] iPrintLnBold(spot.script_noteworthy); // no tiene
-                        //level.players[0] iPrintLnBold(spot.script_float+" float"); // no tiene
-                        level.players[0] iPrintLnBold(spot.str_tag+" tag"); // no tiene
+                    /*level thread debug_message(spot.script_string+" string");  si tiene
+                        //level thread debug_message(spot.script_noteworthy); // no tiene
+                        //level thread debug_message(spot.script_float+" float"); // no tiene
+                        level thread debug_message(spot.str_tag+" tag"); // no tiene
                     */
                 }
             }

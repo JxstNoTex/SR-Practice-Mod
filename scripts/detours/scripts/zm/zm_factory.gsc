@@ -21,7 +21,7 @@ detour zm_factory<scripts\zm\zm_factory.gsc>::function_e0f73644() //This is the 
 
 		if(level.debug){
 			level flag::wait_till("start_zombie_round_logic");
-			level.players[0] iPrintLnBold("Random 5th perk set to Stamina");
+			level thread debug_message("Random 5th perk set to Stamina");
 		}
 
 	}else{
@@ -32,7 +32,7 @@ detour zm_factory<scripts\zm\zm_factory.gsc>::function_e0f73644() //This is the 
 
 			if(level.debug){
 				level flag::wait_till("start_zombie_round_logic");
-				level.players[0] iPrintLnBold("You got Daikiry");
+				level thread debug_message("You got Daikiry");
 			}
 		}
 		else
@@ -42,7 +42,7 @@ detour zm_factory<scripts\zm\zm_factory.gsc>::function_e0f73644() //This is the 
 
 			if(level.debug){
 				level flag::wait_till("start_zombie_round_logic");
-				level.players[0] iPrintLnBold("You got Stamina");
+				level thread debug_message("You got Stamina");
 			}
 		}
 	}

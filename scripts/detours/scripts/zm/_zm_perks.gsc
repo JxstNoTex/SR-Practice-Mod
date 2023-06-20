@@ -25,54 +25,54 @@ detour zm_perks<scripts\zm\_zm_perks.gsc>::give_random_perk()
         if(world.practice){
             if(!self hasPerk("specialty_staminup") && IsInArray(perks, "specialty_staminup")){
                 self [[ level.detour_functions["zm_perks::give_perk"] ]] ("specialty_staminup");
-                if(level.debug) level.players[0] iPrintLnBold("Giving Stam to "+self.name);
+                if(level.debug) level thread debug_message("Giving Stam to "+self.name);
                 return "specialty_staminup";
             }
             if(!self hasPerk("specialty_doubletap2") && IsInArray(perks, "specialty_doubletap2")){
                 self [[ level.detour_functions["zm_perks::give_perk"] ]] ("specialty_doubletap2");
-                if(level.debug) level.players[0] iPrintLnBold("Giving Doubletap to "+self.name);
+                if(level.debug) level thread debug_message("Giving Doubletap to "+self.name);
                 return "specialty_doubletap2";
             }
             if(!self hasPerk("specialty_armorvest") && IsInArray(perks, "specialty_armorvest")){
                 self [[ level.detour_functions["zm_perks::give_perk"] ]] ("specialty_armorvest");
-                if(level.debug) level.players[0] iPrintLnBold("Giving Jugg to "+self.name);
+                if(level.debug) level thread debug_message("Giving Jugg to "+self.name);
                 return "specialty_armorvest";
             }
             if(!self hasPerk("specialty_fastreload") && IsInArray(perks, "specialty_fastreload")){
                 self [[ level.detour_functions["zm_perks::give_perk"] ]] ("specialty_fastreload");
-                if(level.debug) level.players[0] iPrintLnBold("Giving Speedcola to "+self.name);
+                if(level.debug) level thread debug_message("Giving Speedcola to "+self.name);
                 return "specialty_fastreload";
             }
             if(!self hasPerk("specialty_electriccherry") && IsInArray(perks, "specialty_electriccherry")){
                 self [[ level.detour_functions["zm_perks::give_perk"] ]] ("specialty_electriccherry");
-                if(level.debug) level.players[0] iPrintLnBold("Giving electric cherry to "+self.name);
+                if(level.debug) level thread debug_message("Giving electric cherry to "+self.name);
                 return "specialty_electriccherry";
             }
             if(!self hasPerk("specialty_widowswine") && IsInArray(perks, "specialty_widowswine")){
                 self [[ level.detour_functions["zm_perks::give_perk"] ]] ("specialty_widowswine");
-                if(level.debug) level.players[0] iPrintLnBold("Giving Widows to "+self.name);
+                if(level.debug) level thread debug_message("Giving Widows to "+self.name);
                 return "specialty_widowswine";
             }
             if(!self hasPerk("specialty_additionalprimaryweapon") && IsInArray(perks, "specialty_additionalprimaryweapon")){
                 self [[ level.detour_functions["zm_perks::give_perk"] ]] ("specialty_additionalprimaryweapon");
-                if(level.debug) level.players[0] iPrintLnBold("Giving Mule to "+self.name);
+                if(level.debug) level thread debug_message("Giving Mule to "+self.name);
                 return "specialty_additionalprimaryweapon";
             }
             if(!self hasPerk("specialty_quickrevive") && IsInArray(perks, "specialty_quickrevive")){
                 self [[ level.detour_functions["zm_perks::give_perk"] ]] ("specialty_quickrevive");
-                if(level.debug) level.players[0] iPrintLnBold("Giving Quick to "+self.name);
+                if(level.debug) level thread debug_message("Giving Quick to "+self.name);
                 return "specialty_quickrevive";
             }
             if(!self hasPerk("specialty_deadshot") && IsInArray(perks, "specialty_deadshot")){
                 self [[ level.detour_functions["zm_perks::give_perk"] ]] ("specialty_deadshot");
-                if(level.debug) level.players[0] iPrintLnBold("Giving Daikiry to "+self.name);
+                if(level.debug) level thread debug_message("Giving Daikiry to "+self.name);
                 return "specialty_deadshot";
             }
         #endregion
         }else{
             perks = array::randomize(perks);
 		    random_perk = perks[0];
-            if(level.debug) level.players[0] iPrintLnBold("Giving "+random_perk);
+            if(level.debug) level thread debug_message("Giving "+random_perk);
 		    self [[ level.detour_functions["zm_perks::give_perk"] ]](random_perk);
         }
 	}
@@ -109,7 +109,7 @@ detour zm_perks<scripts\zm\_zm_perks.gsc>::give_random_perk()
 		level waittill(str_on);
 
 
-		//if(level.debug)level.players[0] iPrintLnBold(str_on);
+		//if(level.debug)level thread debug_message(str_on);
 
 
 		for(i = 0; i < machine.size; i++)
@@ -123,7 +123,7 @@ detour zm_perks<scripts\zm\_zm_perks.gsc>::give_random_perk()
 		level notify(str_notify);
 
 
-		//if(level.debug)level.players[0] iPrintLnBold(str_notify);
+		//if(level.debug)level thread debug_message(str_notify);
 
 
 		array::thread_all(machine_triggers, zm_perks::set_power_on, 1);

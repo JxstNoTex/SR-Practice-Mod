@@ -5,46 +5,46 @@ function attempt_counter(){
 
     /*if(!isDefined(world.attempts)){
         world.attempts = 1;
-        //level.players[0] iPrintLnBold("No hay intentos registrados");
+        //level thread debug_message("No hay intentos registrados");
     }else{
         world.attempts++;
-        //level.players[0] iPrintLnBold("Hay "+world.attempts);
+        //level thread debug_message("Hay "+world.attempts);
     }*/
 
     if(!isdefined(world.attempts)){
         world.attempts = [];
-        //level.players[0] iPrintLnBold("No hay array de mapas");
+        //level thread debug_message("No hay array de mapas");
     }else{
-        //level.players[0] iPrintLnBold("Si hay array");
+        //level thread debug_message("Si hay array");
     }
 
     if(!isdefined(world.attempts[level.script])){
         world.attempts[level.script] = [];
-        //level.players[0] iPrintLnBold("No esta registrado el mapa");
+        //level thread debug_message("No esta registrado el mapa");
     }else{
-        //level.players[0] iPrintLnBold("El mapa ya esta registrado");
+        //level thread debug_message("El mapa ya esta registrado");
     }
 
     if(!isdefined(world.attempts[level.script][level.players.size])){
         world.attempts[level.script][level.players.size] = 1;
-        //level.players[0] iPrintLnBold("No hay intentos jugados");
+        //level thread debug_message("No hay intentos jugados");
     }else{
-        //level.players[0] iPrintLnBold("Ya se ha jugado");
+        //level thread debug_message("Ya se ha jugado");
         world.attempts[level.script][level.players.size]++;
     }
 
     /*if(!isDefined(world.attempts.level.script.level.players.size)){
         world.attempts.level.script.level.players.size = 1;
-        level.players[0] iPrintLnBold("No hay intentos registrados");
+        level thread debug_message("No hay intentos registrados");
     }else{
         world.attempts.level.script.level.players.size++;
-        level.players[0] iPrintLnBold("Hay "+world.attempts.level.script.level.players.size);
+        level thread debug_message("Hay "+world.attempts.level.script.level.players.size);
     }*/
 
 
     if(!isdefined(level.attempts)){
 
-        //level.players[0] iPrintLnBold("No hay intentos registrados");
+        //level thread debug_message("No hay intentos registrados");
 
 	    level.attempts = newHudElem();
         //tam inicial 1.5

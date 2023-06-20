@@ -9,13 +9,17 @@
 #include scripts\shared\hud_shared;
 #include scripts\shared\array_shared;
 
-#include scripts\shared\flag_shared;  // for flags
-#include scripts\zm\_zm_utility; // for get_round_enemy_array
-#include scripts\zm\_util; // for spawn_model
+#include scripts\shared\flag_shared;	// flag functions
+#include scripts\zm\_zm_utility; 		// to use get_round_enemy_array
+#include scripts\zm\_util; 				// for spawn_model
 
-#include scripts\zm\_zm_perks; // for perks machine functionality
+#include scripts\zm\_zm_perks; 			// for perks machine functionality
+
+#include scripts\zm\_zm_zonemgr; 		// to get zones for abh locations
+
 
 #define GAMETICK = 0.05;
+
 
 #namespace serious;
 

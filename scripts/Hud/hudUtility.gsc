@@ -121,10 +121,10 @@ function calculate_round_time(ticks){
 
     text = "";
 
-    //level.players[0] iPrintLnBold(text+1);
+    //level thread debug_message(text+1);
 
     text = "^5"+(level.round_number+1)+"^7 in: ^1";
-    //level.players[0] iPrintLnBold(text+2);
+    //level thread debug_message(text+2);
     ms = int(time*100)%100;
     s = int(time-(ms/100));
 
@@ -142,23 +142,23 @@ function calculate_round_time(ticks){
         text = text+h+":";
     }
 
-    //level.players[0] iPrintLnBold(text+3);
+    //level thread debug_message(text+3);
 
     if(hours && min<10) text = text+"0"+min+":";
     else if(hours && min>=10) text = text+min+":";
     else if(!hours && min<10) text = text+"0"+min+":";
     else text = text+min+":";
 
-    //level.players[0] iPrintLnBold(text+4);
+    //level thread debug_message(text+4);
 
     if(s<10) text = text+"0"+s+".";
     else text = text+s+".";
 
 
-    //level.players[0] iPrintLnBold(text+5);
+    //level thread debug_message(text+5);
 
     text = text+ms;
     self setText(text);
 
-    //level.players[0] iPrintLnBold(text+6);
+    //level thread debug_message(text+6);
 }

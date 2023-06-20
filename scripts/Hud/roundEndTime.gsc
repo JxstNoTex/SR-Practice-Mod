@@ -8,7 +8,7 @@ function showEndTimes(){
 
     if(!isdefined(level.round_ends)){
 
-        //level.players[0] iPrintLnBold("Creando round ends");
+        //level thread debug_message("Creando round ends");
 
 	    level.round_ends = newHudElem();
 
@@ -18,7 +18,7 @@ function showEndTimes(){
         level thread change_end_times();
     }
 
-    //level.players[0] iPrintLnBold("Round end creado");
+    //level thread debug_message("Round end creado");
 
 }
 
@@ -274,7 +274,7 @@ function change_end_times(){
     level endon("end_game");
 
     while(level.round_number < 1){
-        //level.players[0] iPrintLnBold("Esperando a la Ronda 1");
+        //level thread debug_message("Esperando a la Ronda 1");
         wait 0.05;
     }
 
@@ -282,7 +282,7 @@ function change_end_times(){
 
     while( isDefined(world.end_times[level.script][level.players.size][level.round_number+1]) ){
         wait level.tick;
-        //level.players[0] iPrintLnBold("Esperando a que acabe la ronda...");
+        //level thread debug_message("Esperando a que acabe la ronda...");
         level waittill("end_of_round");
         level.round_ends setText(world.end_times[level.script][level.players.size][level.round_number+1]);
 
@@ -290,13 +290,13 @@ function change_end_times(){
 
         //if(!((level.round_number+1)%5)){
             level thread say_round_time();
-            //level.players[0] iPrintLnBold("Multiplo de 5");
+            //level thread debug_message("Multiplo de 5");
         //}
-        //level.players[0] iPrintLnBold("Terminada la ronda "+level.round_number);
+        //level thread debug_message("Terminada la ronda "+level.round_number);
     }
 
 
-    //level.players[0] iPrintLnBold("No mas rondas en timer");
+    //level thread debug_message("No mas rondas en timer");
     level.round_ends.alpha = 0;
 
 }
@@ -310,7 +310,7 @@ function say_round_time(){
         level.round_time init_hudelem("left", "top", "user_left", "user_top", /*Coordenadas*/600, 450, /*fontscale*/2, 0, (1,1,1), 1, &"Round ");
     }
 
-    //level.players[0] iPrintLnBold("Creando round ends");
+    //level thread debug_message("Creando round ends");
     level.round_time calculate_round_time(level.ticks);
 
     level.round_time FadeOverTime(2);

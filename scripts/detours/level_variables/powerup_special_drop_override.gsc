@@ -49,10 +49,10 @@ function factory_custom_powerup_special_drop_override()
         if(world.practice){
             if(IsInArray(level.zombie_powerup_array, "insta_kill") && level.zombie_total){
                 powerup = "insta_kill";
-                if(level.debug)level.players[0] iPrintLnBold("Drop set to "+powerup+" with "+level.zombie_total+" zombies to respawn");
+                if(level.debug)level thread debug_message("Drop set to "+powerup+" with "+level.zombie_total+" zombies to respawn");
             }else if(IsInArray(level.zombie_powerup_array, "nuke") && !level.zombie_total){
                 powerup = "nuke";
-                if(level.debug)level.players[0] iPrintLnBold("Drop set to "+powerup+" with "+[[level.detour_functions["zombie_utility::get_round_enemy_array"]]]().size+" zombies alive");
+                if(level.debug)level thread debug_message("Drop set to "+powerup+" with "+[[level.detour_functions["zombie_utility::get_round_enemy_array"]]]().size+" zombies alive");
             }
         }
 	#endregion
@@ -77,16 +77,16 @@ function factory_custom_powerup_special_drop_override()
                 }
                 if(need_perk && level.round_number<28){ //Round 28 is the max round you have a chance to get the perk
                     powerup = "full_ammo";
-                    if(level.debug) level.players[0] iPrintLnBold("Someone needs perk");
+                    if(level.debug) level thread debug_message("Someone needs perk");
                 }else if(level.zombie_total){
                     powerup = "insta_kill";
-                    if(level.debug) level.players[0] iPrintLnBold("you get insta_kill to kill "+level.zombie_total+" to respawn");
+                    if(level.debug) level thread debug_message("you get insta_kill to kill "+level.zombie_total+" to respawn");
                 }else{
                     powerup = "nuke";
-                    if(level.debug) level.players[0] iPrintLnBold("you get nuke to kill "+[[level.detour_functions["zombie_utility::get_round_enemy_array"]]]().size+" zombies alive");
+                    if(level.debug) level thread debug_message("you get nuke to kill "+[[level.detour_functions["zombie_utility::get_round_enemy_array"]]]().size+" zombies alive");
                 }
             }
-        }else if(level.debug) level.players[0] iPrintLnBold("You got "+powerup);
+        }else if(level.debug) level thread debug_message("You got "+powerup);
 	#endregion
 
 	}
@@ -101,9 +101,9 @@ function factory_custom_powerup_special_drop_override()
                 if(world.practice){
                     if(need_perk && level.round_number<28){
                         powerup = "free_perk";
-                        if(level.debug)level.players[0] iPrintLnBold("powerup changed to "+powerup);
+                        if(level.debug)level thread debug_message("powerup changed to "+powerup);
                     }
-                }else if(level.debug)level.players[0] iPrintLnBold("You got "+powerup);
+                }else if(level.debug)level thread debug_message("You got "+powerup);
 	#endregion
 			}
 			break;
@@ -150,7 +150,7 @@ function factory_custom_powerup_special_drop_override()
 		}
 	}
 	#region Patch
-    	if(level.debug)level.players[0] iPrintLnBold("You got "+powerup);
+    	if(level.debug)level thread debug_message("You got "+powerup);
 	#endregion
 	return powerup;
 }

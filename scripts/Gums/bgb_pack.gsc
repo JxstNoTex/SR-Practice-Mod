@@ -95,7 +95,7 @@ function ee_factory_custom_bgb_pack(){
 
         case 1:
         
-            level.players[0].bgb_pack = [];
+            //level.players[0].bgb_pack = [];
             level.players[0].bgb_pack_randomized = [];
 
             if(level.is_megas){
@@ -112,7 +112,7 @@ function ee_factory_custom_bgb_pack(){
         case 3:
         case 4:
 
-            //We check if there is at least 1 player with ephemeral
+            // We check if there is at least 1 player with ephemeral
             ephemeral_player = undefined;
             foreach(player in level.players){
                 if(IsInArray(player.bgb_pack, "zm_bgb_ephemeral_enhancement")){
@@ -128,12 +128,15 @@ function ee_factory_custom_bgb_pack(){
             points_gums = array::randomize(points_gums);
             ArrayInsert(points_gums, "zm_bgb_anywhere_but_here", 1);
 
+
+            // If we detect a player with ephemeral
             if(isDefined(ephemeral_player)){
                 foreach(player in level.players){
                     if(player == ephemeral_player) player thread set_bgb(ephemeral_gum);
                     else player thread set_bgb(points_gums);
 
                 }
+            // If we dont detect anyone with ephemeral
             }else{
                 foreach(player in level.players){
                     if(player IsHost()) player thread set_bgb(ephemeral_gum);
@@ -201,6 +204,10 @@ function ee_factory_custom_bgb_pack(){
 
 
 function set_bgb(patched_bgb){
+
+    if(!patched_bgb.size){
+        
+    }
 
     self.bgb_pack_randomized = [];
 

@@ -100,9 +100,22 @@ function check_blackscreen(){
 
 function debug_message(text){
 
-    while(!level.black_screen) wait GAMETICK;
-    wait 4;
+    while(!isDefined(level.host)){
+        wait GAMETICK;
+        foreach(player in level.players){
+            if(player IsHost()) level.host = player;
+            break;
+        }
+    }
 
-    level.players[0] iPrintLnBold(text);
+    delay = false;
+    while(!level.black_screen){
+        wait GAMETICK;
+        delay = true;
+    }
 
+    if(delay) wait 4;
+
+
+    level.host iPrintLnBold(text);
 }

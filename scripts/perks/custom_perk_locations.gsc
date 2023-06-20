@@ -272,14 +272,14 @@ function perk_machine_functionality(){
 		for(i = 0; i < a_keys.size; i++)
 		{
 			/*if( !IsInArray(perk_array, a_keys[i]) ){
-				level.players[0] iPrintLnBold("No esta "+a_keys[i]+" "+i);
+				level thread debug_message("No esta "+a_keys[i]+" "+i);
 				level thread zm_perks::perk_machine_think(a_keys[i], level._custom_perks[a_keys[i]]);
 				
 				continue;
 			}else{
 				level thread zm_perks::perk_machine_think(a_keys[i], level._custom_perks[a_keys[i]]);
 			}
-			level.players[0] iPrintLnBold(a_keys[i]+" "+i);*/
+			level thread debug_message(a_keys[i]+" "+i);*/
 
 
 			

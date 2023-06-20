@@ -15,10 +15,10 @@ detour zm_factory<scripts\zm\zm_factory.gsc>::powerup_special_drop_override()
         if(world.practice){
             if(IsInArray(level.zombie_powerup_array, "insta_kill") && level.zombie_total){
                 powerup = "insta_kill";
-                if(level.debug)level.players[0] iPrintLnBold("Drop set to "+powerup+" with "+level.zombie_total+" zombies to respawn");
+                if(level.debug)level thread debug_message("Drop set to "+powerup+" with "+level.zombie_total+" zombies to respawn");
             }else if(IsInArray(level.zombie_powerup_array, "nuke") && !level.zombie_total){
                 powerup = "nuke";
-                if(level.debug)level.players[0] iPrintLnBold("Drop set to "+powerup+" with "+[[level.detour_functions["zombie_utility::get_round_enemy_array"]]]().size+" zombies alive");
+                if(level.debug)level thread debug_message("Drop set to "+powerup+" with "+[[level.detour_functions["zombie_utility::get_round_enemy_array"]]]().size+" zombies alive");
             }
         }
 
@@ -41,10 +41,10 @@ detour zm_factory<scripts\zm\zm_factory.gsc>::powerup_special_drop_override()
 			}
             if(IsInArray(level.zombie_powerup_array, "free_perk")){
                 powerup = "free_perk";
-                level.players[0] iPrintLnBold("There is a chance to get a perk");
+                level thread debug_message("There is a chance to get a perk");
             }
 
-            level.players[0] iPrintLnBold(powerup+" Changing from ammo to perk");
+            level thread debug_message(powerup+" Changing from ammo to perk");
 			break;
 		}
 		case "dog":
@@ -66,7 +66,7 @@ detour zm_factory<scripts\zm\zm_factory.gsc>::powerup_special_drop_override()
 		case "free_perk":
 		case "nothing":
 		{
-            level.players[0] iPrintLnBold(powerup+" There is nothing or there was a perk");
+            level thread debug_message(powerup+" There is nothing or there was a perk");
 			if(isdefined(level._zombiemode_special_drop_setup))
 			{
 				is_powerup = [[level._zombiemode_special_drop_setup]](powerup);
@@ -89,8 +89,8 @@ detour zm_factory<scripts\zm\zm_factory.gsc>::powerup_special_drop_override()
 	}
 
     if(level.debug){
-        if(isdefined(powerup))level.players[0] iPrintLnBold(powerup+" is the final powerup");
-        else level.players[0] iPrintLnBold("undefined");
+        if(isdefined(powerup))level thread debug_message(powerup+" is the final powerup");
+        else level thread debug_message("undefined");
     }
 
 	return powerup;

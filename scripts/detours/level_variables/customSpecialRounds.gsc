@@ -92,7 +92,7 @@ function factory_next_dog_round(){
         break;
 
         default:
-            level.players[0] iPrintLnBold("Error loading dog rounds");
+            level thread debug_message("Error loading dog rounds");
         break;
 
     }
@@ -101,12 +101,12 @@ function factory_next_dog_round(){
 
     for(i=0; i<dog_rounds.size; i++){
         level.next_dog_round = dog_rounds[i];
-        if(level.debug) level.players[0] iPrintLnBold("Next dog round is "+dog_rounds[i]);
+        if(level.debug) level thread debug_message("Next dog round is "+dog_rounds[i]);
         while(true){
             wait GAMETICK;
             level waittill("end_of_round");
             if(level.round_number >= dog_rounds[i]){
-                if(level.debug) level.players[0] iPrintLnBold("Setting new dog round...");
+                if(level.debug) level thread debug_message("Setting new dog round...");
                 break;
             }
         }
