@@ -12,9 +12,13 @@ init()
 
     level.tick = 0.05;
     if(!isdefined(level.detour_functions)) level.detour_functions = [];
-    level.debug = true;
+    level.debug = false;
 
     if(level.debug){
+
+        //Gives 7 uses of ABH
+	    bgb::register("zm_bgb_anywhere_but_here", "activated", 7, undefined, undefined, zm_bgb_anywhere_but_here::validation, zm_bgb_anywhere_but_here::activation);
+
 
         level.debug_perks_location = false;
         level.debug_is_megas = true;
@@ -105,6 +109,8 @@ on_player_connect()
 
     //Shows number of manipulable spawns at SoE and Giant Style
     if(self IsHost() && level.debug) level thread n_zombie_spawn_hud();
+
+    if(!self hasWeapon(level.super_ee_weapon)) self zm_weapons::weapon_give( level.super_ee_weapon, false, false, true, true );
 }
 
 on_player_spawned()

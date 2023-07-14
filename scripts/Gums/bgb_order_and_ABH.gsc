@@ -10,6 +10,8 @@ function custom_bgb_pack(){
 
         case "zm_factory":
             level thread factory_custom_bgb_pack();
+            if(level.is_megas) level.var_2c12d9a6 = ::ee_factory_mg_custom_ABH;
+            else level.var_2c12d9a6 = ::ee_factory_cg_custom_ABH;
         break;
 
         case "zm_castle":
@@ -73,7 +75,7 @@ function custom_bgb_pack(){
 function factory_custom_bgb_pack(){
     if(world.sr_mode == "rounds"){
 
-        //level thread rounds_factory_custom_bgb_pack();
+        level thread rounds_factory_custom_bgb_pack();
         //if(level.debug_bgb_pack) level thread debug_message("Setting Gums for Rounds SR...");
 
     }else if(world.sr_mode == "easter_eggs"){
@@ -90,6 +92,21 @@ function factory_custom_bgb_pack(){
 
 }
 
+function rounds_factory_custom_bgb_pack(){
+
+    if(level.is_megas){
+        megas_gum = ["zm_bgb_reign_drops", "zm_bgb_kill_joy", "zm_bgb_fatal_contraption", "zm_bgb_temporal_gift", "zm_bgb_shopping_free"];
+
+        foreach(player in level.players){
+            player thread set_bgb(megas_gum);
+        }
+    }
+    
+
+    if(level.debug_bgb_pack) level thread debug_message("Gums set!");
+
+}
+
 function ee_factory_custom_bgb_pack(){
     switch(level.players.size){
 
@@ -98,10 +115,12 @@ function ee_factory_custom_bgb_pack(){
             //level.players[0].bgb_pack = [];
             level.players[0].bgb_pack_randomized = [];
 
+            //Megas BGB
             if(level.is_megas){
                 ArrayInsert(level.players[0].bgb_pack_randomized, "zm_bgb_reign_drops",           level.players[0].bgb_pack_randomized.size);
                 ArrayInsert(level.players[0].bgb_pack_randomized, "zm_bgb_ephemeral_enhancement", level.players[0].bgb_pack_randomized.size);
                 ArrayInsert(level.players[0].bgb_pack_randomized, "zm_bgb_anywhere_but_here",     level.players[0].bgb_pack_randomized.size);
+            //Classic BGB
             }else{
                 ArrayInsert(level.players[0].bgb_pack_randomized, "zm_bgb_anywhere_but_here",     level.players[0].bgb_pack_randomized.size);
             }
@@ -206,13 +225,12 @@ function ee_factory_custom_bgb_pack(){
 function set_bgb(patched_bgb){
 
     if(!patched_bgb.size){
-        
+        level thread debug_message("Error, cant set BGB to player "+self.name);
+        return;
     }
 
     self.bgb_pack_randomized = [];
 
-    for(i=0; i<patched_bgb.size; i++){
-        ArrayInsert(self.bgb_pack_randomized, patched_bgb[i], self.bgb_pack_randomized.size);
-    }
+    for(i=0; i<patched_bgb.size; i++) ArrayInsert(self.bgb_pack_randomized, patched_bgb[i], self.bgb_pack_randomized.size);
 
 }

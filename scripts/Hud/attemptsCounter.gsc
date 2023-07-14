@@ -58,6 +58,8 @@ function attempt_counter(){
 
         if(world.attempts[level.script][level.players.size] == 7){
             level.attempts setText("SIUUUUU");
+        }else if(world.attempts[level.script][level.players.size] == 10){
+            level.attempts setText("ANKARA MESSI");
         }else{
             level.attempts setValue(world.attempts[level.script][level.players.size]);
         }
