@@ -4,11 +4,6 @@ init()
     level.is_megas = undefined;
     level thread get_gum_category();
 
-    //This checks if random perk locations should be changed
-    if(level.script == "zm_factory" || level.script == "zm_zod" &&  world.practice){
-        level thread custom_perk_locations();
-    }
-
 
     level.tick = 0.05;
     if(!isdefined(level.detour_functions)) level.detour_functions = [];
@@ -134,10 +129,3 @@ on_player_spawned()
         self iPrintLnBold("Debuger mode activated");
     }
 }
-
-
-/*
-
-self setlowready(0);
-
-*/

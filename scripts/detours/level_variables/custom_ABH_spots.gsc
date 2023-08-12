@@ -225,12 +225,6 @@ function ee_factory_cg_custom_ABH(){
 	return s_player_respawn;
 }
 
-function is_giant_ee_done(){
-	if(!isDefined(level.var_1cbe7756)) return false;
-	if(!level.var_1cbe7756) return false;
-	return true;
-}
-
 #endregion
 
 #region Castle

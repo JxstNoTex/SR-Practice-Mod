@@ -162,3 +162,8 @@ function calculate_round_time(ticks){
 
     //level thread debug_message(text+6);
 }
+
+function hide_timer(time){
+    wait time;
+    self.alpha = false;
+}

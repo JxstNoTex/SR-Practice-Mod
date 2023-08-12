@@ -152,6 +152,7 @@ function create_revolver_upgraded_camos(){
 #endregion
 
 #region Factory
+
 function factory_customrandomweaponweights(keys){
 
     #region Patch
@@ -160,17 +161,17 @@ function factory_customrandomweaponweights(keys){
             ArrayInsert(keys, level.weaponzmteslagun, 0);
             if(level.debug)level thread debug_message(level.weaponzmteslagun.name +" is next weapon");
             return keys;
-        }else if(!self [[ level.detour_functions["zm_weapons::has_weapon_or_upgrade"] ]](level.weaponzmcymbalmonkey)){
-            if(level.debug) level thread debug_message(self.name + " doesnt have monkeys");
-            ArrayInsert(keys, level.weaponzmcymbalmonkey, 0);
+        }else if(!self [[ level.detour_functions["zm_weapons::has_weapon_or_upgrade"] ]](getweapon("sniper_fastsemi"))){
+            if(level.debug) level thread debug_message(self.name + " doesnt have drakon");
+            ArrayInsert(keys, getweapon("sniper_fastsemi"), 0);
             return keys;
         }else if(!self [[ level.detour_functions["zm_weapons::has_weapon_or_upgrade"] ]](getweapon("lmg_cqb"))){
             if(level.debug) level thread debug_message(self.name + " doesnt have dingo");
             ArrayInsert(keys, getweapon("lmg_cqb"), 0);
             return keys;
-        }else if(!self [[ level.detour_functions["zm_weapons::has_weapon_or_upgrade"] ]](getweapon("sniper_fastsemi"))){
-            if(level.debug) level thread debug_message(self.name + " doesnt have drakon");
-            ArrayInsert(keys, getweapon("sniper_fastsemi"), 0);
+        }else if(!self [[ level.detour_functions["zm_weapons::has_weapon_or_upgrade"] ]](level.weaponzmcymbalmonkey)){
+            if(level.debug) level thread debug_message(self.name + " doesnt have monkeys");
+            ArrayInsert(keys, level.weaponzmcymbalmonkey, 0);
             return keys;
         }
     }
@@ -196,6 +197,7 @@ function create_tesla_camos(){
     ArrayInsert(level.tesla_camos[getweapon("tesla_gun_upgraded").name], 133, level.tesla_camos[getweapon("tesla_gun_upgraded").name].size);
     
 }
+
 #endregion
 
 #region Castle

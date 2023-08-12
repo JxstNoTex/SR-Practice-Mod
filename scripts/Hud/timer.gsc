@@ -36,6 +36,28 @@ function timer_hud()
 
 	}
 
+	//Checks if the map has a timer for the EE
+	if(world.sr_mode == "easter_eggs"){
+
+		switch(level.script){
+
+			case "zm_zod":
+
+				level thread shadowsSplits();
+
+			break;
+
+			case "zm_factory":
+
+				level thread giantSplits();
+
+			break;
+
+			default:
+			foreach(player in level.players) player iPrintLnBold("The map "+level.script);
+			foreach(player in level.players) player iPrintLnBold("Doesnt have EE splits");
+		}
+	}
 
 }
 
