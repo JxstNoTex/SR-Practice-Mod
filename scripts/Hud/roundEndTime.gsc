@@ -307,7 +307,7 @@ function say_round_time(){
 
 	    level.round_time = newHudElem();
 
-        level.round_time init_hudelem("left", "top", "user_left", "user_top", /*Coordenadas*/600, 450, /*fontscale*/2, 0, (1,1,1), 1, &"Round ");
+        level.round_time init_hudelem("right", "bottom", "user_right", "user_bottom", /*Coordenadas*/-50, 0, /*fontscale*/2, 0, (1,1,1), 1, &"Round ");
     }
 
     //level thread debug_message("Creando round ends");

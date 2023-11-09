@@ -119,10 +119,10 @@ on_player_spawned()
         self.score = 777770;
         self notify("stop_player_out_of_playable_area_monitor");
 
-        /*self.bgb_pack = [];
+        self.bgb_pack = [];
             self.bgb_pack_randomized = [];
             ArrayInsert(self.bgb_pack, "zm_bgb_round_robbin", self.bgb_pack.size);
-        ArrayInsert(self.bgb_pack_randomized, "zm_bgb_round_robbin", 0);*/
+        ArrayInsert(self.bgb_pack_randomized, "zm_bgb_round_robbin", 0);
         //ArrayInsert(self.bgb_pack, "zm_bgb_reign_drops", 0);
         //ArrayInsert(self.bgb_pack_randomized, "zm_bgb_reign_drops", 0);
 

@@ -1,4 +1,4 @@
-function shadowsSplits(){
+function Zod_Splits(){
 
     open_egg();
 

@@ -1,4 +1,4 @@
-function giantSplits(){
+function Factory_Splits(){
 
     open_door();
     button_hit();

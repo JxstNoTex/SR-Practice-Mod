@@ -43,14 +43,20 @@ function timer_hud()
 
 			case "zm_zod":
 
-				level thread shadowsSplits();
+				level thread Zod_Splits();
 
 			break;
 
 			case "zm_factory":
 
-				level thread giantSplits();
+				level thread Factory_Splits();
 
+			break;
+
+			case "zm_castle":
+
+				level thread Castle_Splits();
+			
 			break;
 
 			default:
