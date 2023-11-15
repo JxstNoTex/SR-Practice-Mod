@@ -48,7 +48,7 @@ function attempt_counter(){
 
 	    level.attempts = newHudElem();
         //tam inicial 1.5
-        level.attempts init_hudelem("left", "top", "user_left", "user_top", /*Coordenadas*/350, 150, /*tam*/7, 0, (1,1,1), 1, &"Attempts: ");
+        level.attempts init_hudelem("center", "middle", "center", "middle", /*Coordenadas*/0, -100, /*tam*/7, 0, (1,1,1), 1, &"Attempts: ");
 
         if(world.attempts[level.script][level.players.size] == 1){
             level.attempts.label = &"Attempt: ";
@@ -86,7 +86,11 @@ function animation(){
 
         level.attempts moveOverTime(2.7);
         level.attempts.x = 10;
-        level.attempts.y = 0;       
+        level.attempts.y = 0;
+        level.attempts.alignx = "left";
+	    level.attempts.aligny = "top";
+	    level.attempts.horzalign = "left";
+	    level.attempts.vertalign = "top";       
 
         level.attempts changeFontScaleOverTime(2.7);
         level.attempts.fontscale = 1.5;
