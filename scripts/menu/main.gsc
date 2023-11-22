@@ -7,7 +7,7 @@ init()
 
     level.tick = 0.05;
     if(!isdefined(level.detour_functions)) level.detour_functions = [];
-    level.debug = false;
+    level.debug = true;
 
     if(level.debug){
 

@@ -86,6 +86,18 @@ function debug_hud()
 
 	}
 
+    if(!isdefined(self.abh_locations)){
+
+		self.abh_locations = newClientHudElem(self);
+		self.abh_locations init_hudelem("left", "top", "user_left", "user_top", 10, level.height, 1.5, 0, (1,1,1), 1, &"^6ABH: ^5");
+
+        level.height = level.height+15;
+		self.abh_locations.alpha = 1;
+
+        self thread abh_availables();
+
+	}
+
 
 
     level thread zombie_alive_hud();
@@ -340,5 +352,170 @@ function respawners_availables(){
 
         self.respawners setValue(a_candidates.size);
     }
+
+}
+
+
+function abh_availables(){
+
+    self.abh_loc = 1;
+    self.abhs = [];
+
+    self.current_abh = get_noprint_abh();
+    text = "none";
+
+    for(;;){
+        wait 0.05;
+        if(self AdsButtonPressed() && self attackButtonPressed()){
+            self.abh_loc++;
+            if(self.abh_loc > self.abhs.size) self.abh_loc = 1;
+
+            wait 0.3;
+        }else if(self AdsButtonPressed() && self meleeButtonPressed()){
+            self.abh_loc--;
+            if(self.abh_loc < 1) self.abh_loc = self.abhs.size;
+
+            wait 0.3;
+        }else if(self AdsButtonPressed() && self useButtonPressed()){
+            myloc = self.origin;
+            self.abhs = get_possible_abh();
+            self.abh_loc = self.abhs.size;
+            self iPrintLnBold("ABHs saved!");
+            self setOrigin(myloc);
+
+            wait 0.5;
+        }else if(self AdsButtonPressed() && self fragButtonPressed()){
+            if(self.abhs.size == 0) continue;
+
+            Possible_Locations = struct::get_array(self.abhs[ (self.abh_loc-1) ].target, "targetname");
+		    foreach(Location in Possible_Locations)
+		    {
+
+			    n_script_int = self getentitynumber() + 1;
+			    if(Location.script_int === n_script_int)
+			    {
+				    //s_player_respawn = Location;
+                    self setOrigin(Location.origin);
+			    }
+		    }
+
+            //self setOrigin(self.abhs[ (self.abh_loc-1) ]);
+            self iPrintLnBold("TP done! "+Location.script_noteworthy);
+
+            wait 0.5;
+        }
+
+        self.current_abh = get_noprint_abh();
+        if(self.abhs.size != 0) text = self.abhs[ (self.abh_loc - 1) ].script_string;
+        else text = "none";
+
+        self.abh_locations setText(self.abh_loc+"/"+self.abhs.size+" | "+self.current_abh+" "+self.zone_name);
+    }
+
+}
+
+function get_possible_abh(){
+    //level.var_2c12d9a6 custom ABH function
+    //function_728dfe3 default ABH function
+
+	player_zone_name = zm_zonemgr::get_zone_from_position(self.origin + vectorscale((0, 0, 1), 32), 0);
+	if(!isdefined(player_zone_name))
+	{
+		player_zone_name = self.zone_name;
+	}
+	if(isdefined(player_zone_name))
+	{
+		player_zone_volume = level.zones[player_zone_name];
+	}
+	player_spawn_points = struct::get_array("player_respawn_point", "targetname");
+	Possible_Volumes_Array = [];
+	foreach(s_respawn_point in player_spawn_points)
+	{
+        //test
+        //self setOrigin(s_respawn_point.origin);
+        //wait 2;
+
+		if(zm_utility::is_point_inside_enabled_zone(s_respawn_point.origin, player_zone_volume))
+		{
+			if(!isdefined(Possible_Volumes_Array))
+			{
+				Possible_Volumes_Array = [];
+			}
+			else if(!isarray(Possible_Volumes_Array))
+			{
+				Possible_Volumes_Array = array(Possible_Volumes_Array);
+			}
+			Possible_Volumes_Array[Possible_Volumes_Array.size] = s_respawn_point;
+            self iPrintLnBold(s_respawn_point.script_noteworthy+" available!");
+		}
+        //test
+        else{
+            self iPrintLnBold(s_respawn_point.script_noteworthy+" Out of map...");
+        }
+
+	}
+	if(isdefined(level.var_2d4e3645))
+	{
+		Possible_Volumes_Array = [[level.var_2d4e3645]](Possible_Volumes_Array);
+	}
+
+    return Possible_Volumes_Array;
+
+	s_player_respawn = undefined;
+	if(Possible_Volumes_Array.size > 0)
+	{
+		Random_Possible_Volume = array::random(Possible_Volumes_Array);
+		Possible_Locations = struct::get_array(Random_Possible_Volume.target, "targetname");
+		foreach(Location in Possible_Locations)
+		{
+			n_script_int = self getentitynumber() + 1;
+			if(Location.script_int === n_script_int)
+			{
+				s_player_respawn = Location;
+			}
+		}
+	}
+	return s_player_respawn;
+
+}
+
+function get_noprint_abh(){
+    //level.var_2c12d9a6 custom ABH function
+    //function_728dfe3 default ABH function
+
+	player_zone_name = zm_zonemgr::get_zone_from_position(self.origin + vectorscale((0, 0, 1), 32), 0);
+	if(!isdefined(player_zone_name))
+	{
+		player_zone_name = self.zone_name;
+	}
+	if(isdefined(player_zone_name))
+	{
+		player_zone_volume = level.zones[player_zone_name];
+	}
+	player_spawn_points = struct::get_array("player_respawn_point", "targetname");
+	Possible_Volumes_Array = [];
+	foreach(s_respawn_point in player_spawn_points)
+	{
+
+		if(zm_utility::is_point_inside_enabled_zone(s_respawn_point.origin, player_zone_volume))
+		{
+			if(!isdefined(Possible_Volumes_Array))
+			{
+				Possible_Volumes_Array = [];
+			}
+			else if(!isarray(Possible_Volumes_Array))
+			{
+				Possible_Volumes_Array = array(Possible_Volumes_Array);
+			}
+			Possible_Volumes_Array[Possible_Volumes_Array.size] = s_respawn_point;
+		}
+
+	}
+	if(isdefined(level.var_2d4e3645))
+	{
+		Possible_Volumes_Array = [[level.var_2d4e3645]](Possible_Volumes_Array);
+	}
+
+    return Possible_Volumes_Array.size;
 
 }
